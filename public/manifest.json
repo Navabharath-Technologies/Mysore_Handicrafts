@@ -1,0 +1,9 @@
+{
+  "short_name": "Aurelia",
+  "name": "Aurelia Luxury Furnitures",
+  "icons": [],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#FAF9F6",
+  "background_color": "#FAF9F6"
+}

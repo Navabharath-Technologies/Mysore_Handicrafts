@@ -1,0 +1,149 @@
+/* ── Loading Overlay ──────────────────────────────────── */
+.loading-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(250, 249, 246, 0.97);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: transform 1.2s cubic-bezier(0.76, 0, 0.24, 1);
+  will-change: transform;
+}
+
+.loading-overlay.lo-fade-out {
+  transform: translateY(-100%);
+  pointer-events: none;
+}
+
+/* Inner content parallax — drifts up faster than the overlay */
+.loading-overlay .lo-inner-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: transform 1.2s cubic-bezier(0.76, 0, 0.24, 1);
+  will-change: transform;
+}
+
+.loading-overlay.lo-fade-out .lo-inner-content {
+  transform: translateY(-60px);
+}
+
+/* ── Stage ────────────────────────────────────────────── */
+.chair-stage {
+  position: relative;
+  width: 300px;
+  height: 300px;
+}
+
+/* ── Wood plank base ──────────────────────────────────── */
+.wood-plank {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  border-radius: 4px;
+  opacity: 0;
+  will-change: transform, opacity;
+  box-shadow:
+    1px 3px 6px rgba(50, 35, 25, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.08);
+  transform-origin: center center;
+}
+
+/* ── Cushion override styling ─────────────────────────── */
+.wood-plank.chair-cushion {
+  border-radius: 10px 10px 6px 6px !important;
+  box-shadow:
+    0 8px 18px rgba(196, 122, 98, 0.35),
+    inset 0 2px 4px rgba(255, 255, 255, 0.4),
+    inset 0 -3px 4px rgba(0, 0, 0, 0.18) !important;
+  border: 1px solid rgba(167, 82, 57, 0.25);
+}
+
+/* ── Brand Logo Container ─────────────────────────────── */
+.lo-brand-container {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 40px;
+  opacity: 0;
+  transform: translateY(15px);
+  animation: lo-fade-in-up 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  animation-delay: 0.9s;
+}
+
+.lo-brand-name {
+  font-family: var(--font-serif, 'Playfair Display', Georgia, serif);
+  font-size: 32px;
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  margin-right: -0.22em; /* counteract letter-spacing for perfect centering */
+  color: var(--text-primary, #252827);
+  text-transform: uppercase;
+}
+
+.lo-brand-dot {
+  width: 6px;
+  height: 6px;
+  background-color: var(--accent-brass, #C2A884);
+  border-radius: 50%;
+  margin-left: 2px;
+}
+
+/* ── Subtitle ─────────────────────────────────────────── */
+.lo-subtitle {
+  margin-top: 14px;
+  font-family: var(--font-sans, 'Outfit', sans-serif);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  margin-right: -0.18em; /* counteract letter-spacing for perfect centering */
+  text-transform: uppercase;
+  color: var(--text-secondary, #6B6F6D);
+  opacity: 0;
+  animation: 
+    lo-fade-in 1.2s ease forwards,
+    lo-pulse 2.2s ease-in-out infinite 2.5s;
+}
+
+@keyframes lo-fade-in-up {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes lo-fade-in {
+  to {
+    opacity: 0.65;
+  }
+}
+
+@keyframes lo-pulse {
+  0%, 100% { opacity: 0.35; }
+  50%      { opacity: 0.85; }
+}
+
+/* ── Responsive ───────────────────────────────────────── */
+@media (max-width: 480px) {
+  .chair-stage {
+    width: 220px;
+    height: 220px;
+    transform: scale(0.75);
+  }
+  .lo-brand-name {
+    font-size: 26px;
+  }
+  .lo-brand-container {
+    margin-top: 25px;
+  }
+  .lo-subtitle {
+    font-size: 10px;
+    margin-top: 10px;
+  }
+}
