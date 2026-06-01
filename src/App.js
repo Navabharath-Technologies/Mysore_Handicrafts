@@ -19,6 +19,7 @@ function App() {
   const [pinnedIds, setPinnedIds] = useState([]);
   const [catalogFilter, setCatalogFilter] = useState('all');
   const [catalogSearch, setCatalogSearch] = useState('');
+  const [catalogSubcategory, setCatalogSubcategory] = useState('all');
 
   // Force scroll to top on refresh
   React.useEffect(() => {
@@ -50,9 +51,10 @@ function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const switchTab = (tab, category = 'all', search = '') => {
+  const switchTab = (tab, category = 'all', subcategory = 'all', search = '') => {
     setActiveTab(tab);
     setCatalogFilter(category);
+    setCatalogSubcategory(subcategory);
     setCatalogSearch(search);
     scrollToTop();
   };
@@ -225,6 +227,8 @@ function App() {
             onTogglePin={handleTogglePin}
             activeFilter={catalogFilter}
             setActiveFilter={setCatalogFilter}
+            activeSubFilter={catalogSubcategory}
+            setActiveSubFilter={setCatalogSubcategory}
             searchQuery={catalogSearch}
             setSearchQuery={setCatalogSearch}
           />

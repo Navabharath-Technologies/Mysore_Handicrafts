@@ -41,9 +41,16 @@ export default function Footer({ setActiveTab }) {
         <div>
           <p className="footer-title">By Type</p>
           <ul className="footer-links-list">
-            {['Sofas & Seating', 'Tables', 'Storage & Shelving', 'Beds & Headboards', 'Outdoor Loungers', 'Accent Pieces'].map(type => (
-              <li key={type}>
-                <button className="footer-link-link" onClick={() => setActiveTab('catalog')}>{type}</button>
+            {[
+              { label: 'Sofas & Seating', key: 'seating' },
+              { label: 'Tables', key: 'table' },
+              { label: 'Storage & Shelving', key: 'storage' },
+              { label: 'Beds & Headboards', key: 'bed' },
+              { label: 'Outdoor Loungers', key: 'poolside' },
+              { label: 'Accent Pieces', key: 'accent' }
+            ].map(type => (
+              <li key={type.label}>
+                <button className="footer-link-link" onClick={() => setActiveTab('catalog', 'all', type.key)}>{type.label}</button>
               </li>
             ))}
           </ul>

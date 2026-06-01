@@ -10,13 +10,30 @@ const categories = [
   { key: 'office', label: 'Home Office' }
 ];
 
-export default function Catalog({ onOpenDetail, pinnedIds, onTogglePin, activeFilter, setActiveFilter, searchQuery, setSearchQuery }) {
+export default function Catalog({ onOpenDetail, pinnedIds, onTogglePin, activeFilter, setActiveFilter, activeSubFilter, setActiveSubFilter, searchQuery, setSearchQuery }) {
   // 1. Filter by category first
   let filtered = activeFilter === 'all'
     ? products
     : products.filter(p => p.category === activeFilter);
 
-  // 2. Filter by search query next
+  // 2. Filter by subcategory (type) next
+  if (activeSubFilter && activeSubFilter !== 'all') {
+    if (activeSubFilter === 'seating') {
+      filtered = filtered.filter(p => p.subcategory === 'sofa' || p.subcategory === 'chair' || p.subcategory === 'outdoor-seating');
+    } else if (activeSubFilter === 'table') {
+      filtered = filtered.filter(p => p.subcategory === 'table' || p.subcategory === 'outdoor-dining');
+    } else if (activeSubFilter === 'storage') {
+      filtered = filtered.filter(p => p.subcategory === 'storage');
+    } else if (activeSubFilter === 'bed') {
+      filtered = filtered.filter(p => p.subcategory === 'bed');
+    } else if (activeSubFilter === 'poolside') {
+      filtered = filtered.filter(p => p.subcategory === 'poolside');
+    } else if (activeSubFilter === 'accent') {
+      filtered = filtered.filter(p => p.subcategory === 'ottoman');
+    }
+  }
+
+  // 3. Filter by search query next
   if (searchQuery) {
     const q = searchQuery.toLowerCase();
     filtered = filtered.filter(p => 
@@ -46,6 +63,23 @@ export default function Catalog({ onOpenDetail, pinnedIds, onTogglePin, activeFi
                   Clear Search
                 </button>
               </span>
+            ) : activeSubFilter !== 'all' ? (
+              <span>
+                Showing {filtered.length} piece{filtered.length !== 1 ? 's' : ''} of type <strong>{
+                  activeSubFilter === 'seating' ? 'Sofas & Seating' :
+                  activeSubFilter === 'table' ? 'Tables' :
+                  activeSubFilter === 'storage' ? 'Storage & Shelving' :
+                  activeSubFilter === 'bed' ? 'Beds & Headboards' :
+                  activeSubFilter === 'poolside' ? 'Outdoor Loungers' :
+                  activeSubFilter === 'accent' ? 'Accent Pieces' : activeSubFilter
+                }</strong>
+                <button 
+                  onClick={() => setActiveSubFilter('all')}
+                  style={{ marginLeft: '12px', textDecoration: 'underline', color: 'var(--accent-clay)', fontWeight: '600', cursor: 'pointer', border: 'none', background: 'none', padding: 0 }}
+                >
+                  Clear Filter
+                </button>
+              </span>
             ) : (
               `Showing ${filtered.length} of ${products.length} pieces`
             )}
@@ -58,7 +92,7 @@ export default function Catalog({ onOpenDetail, pinnedIds, onTogglePin, activeFi
                 className={`catalog-filter-btn ${activeFilter === cat.key ? 'active' : ''}`}
                 onClick={() => {
                   setActiveFilter(cat.key);
-                  // Optionally clear text search when selecting a specific category filter
+                  setActiveSubFilter('all');
                   setSearchQuery('');
                 }}
               >
@@ -79,7 +113,7 @@ export default function Catalog({ onOpenDetail, pinnedIds, onTogglePin, activeFi
           <p style={{ fontSize: '14px', marginBottom: '24px', color: 'var(--text-secondary)' }}>Try searching for a different keyword or browsing by room category.</p>
           <button 
             className="btn-luxury" 
-            onClick={() => { setSearchQuery(''); setActiveFilter('all'); }}
+            onClick={() => { setSearchQuery(''); setActiveFilter('all'); setActiveSubFilter('all'); }}
             style={{ padding: '14px 28px', fontSize: '11px', cursor: 'pointer' }}
           >
             Reset Filters & Search
