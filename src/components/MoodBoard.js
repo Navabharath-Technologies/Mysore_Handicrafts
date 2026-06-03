@@ -72,7 +72,6 @@ export default function MoodBoard({ pinnedIds, onTogglePin }) {
 
   const handleTouchStart = useCallback((e, productId) => {
     if (e.touches.length > 0) {
-      if (e.cancelable) e.preventDefault();
       const touch = e.touches[0];
       const canvasRect = canvasRef.current.getBoundingClientRect();
       const item = canvasItems.find(ci => ci.productId === productId);
@@ -88,7 +87,6 @@ export default function MoodBoard({ pinnedIds, onTogglePin }) {
   const handleTouchMove = useCallback((e) => {
     if (!draggingId || !canvasRef.current) return;
     if (e.touches.length > 0) {
-      if (e.cancelable) e.preventDefault();
       const touch = e.touches[0];
       const canvasRect = canvasRef.current.getBoundingClientRect();
       const newX = touch.clientX - canvasRect.left - dragOffset.current.x;
