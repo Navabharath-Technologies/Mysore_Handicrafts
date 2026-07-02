@@ -1,0 +1,271 @@
+/* ── Loading Overlay ──────────────────────────────────── */
+.loading-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(250, 249, 246, 0.97);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: transform 1.2s cubic-bezier(0.76, 0, 0.24, 1);
+  will-change: transform;
+}
+
+.loading-overlay.lo-fade-out {
+  transform: translateY(-100%);
+  pointer-events: none;
+}
+
+.lo-inner-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: transform 1.2s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.loading-overlay.lo-fade-out .lo-inner-content {
+  transform: translateY(-100px);
+}
+
+/* ── 3D Flip Container ────────────────────────────────── */
+.flip-container {
+  perspective: 1200px;
+  width: 260px;
+  height: 260px;
+  margin-bottom: 20px;
+  animation: fall-from-sky 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes fall-from-sky {
+  0% { 
+    transform: translateY(-80vh) rotate(-15deg) scale(0.7); 
+    opacity: 0; 
+  }
+  100% { 
+    transform: translateY(0) rotate(0deg) scale(1); 
+    opacity: 1; 
+  }
+}
+
+.flipper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  /* 2.5s for the fast, multi-spin */
+  transition: transform 2.5s cubic-bezier(0.65, 0, 0.15, 1.15);
+  transform-style: preserve-3d;
+}
+
+/* 4 full spins (1440deg) + 1 half spin (180deg) to land on the back = 1620deg */
+.is-spinning {
+  transform: rotateY(1620deg);
+}
+
+/* ── Front & Back (Raw Wood Tree Log SVG) ────────────────────── */
+.wood-block-front,
+.wood-block-back {
+  position: absolute;
+  width: 160px;
+  height: 220px;
+  left: 50px;
+  top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backface-visibility: hidden;
+  filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.3));
+}
+
+.wood-block-back {
+  transform: rotateY(180deg);
+}
+
+.is-spinning .wood-block-back {
+  animation: hide-wood-back 0.1s linear 2.3s forwards;
+}
+
+/* ── Back (Carved Elephant SVG) ───────────────────────── */
+.carved-product-back {
+  position: absolute;
+  width: 260px;
+  height: 260px;
+  backface-visibility: hidden;
+  /* Start at 180deg so it lands face up when flipper is at 1620deg */
+  transform: rotateY(180deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.25));
+  opacity: 0;
+}
+
+.is-spinning .carved-product-back {
+  animation: reveal-elephant 0.1s linear 2.3s forwards;
+}
+
+@keyframes hide-wood-back {
+  to { opacity: 0; }
+}
+
+@keyframes reveal-elephant {
+  to { opacity: 1; }
+}
+
+#elephant-trunk {
+  transform-origin: 175px 90px;
+  /* 3.8s delay (1.2s fall + 2.5s spin + 0.1s buffer) */
+  animation: lift-trunk 1.5s ease-in-out forwards;
+  animation-delay: 3.8s;
+}
+
+@keyframes lift-trunk {
+  0% { transform: rotate(0deg); }
+  50% { transform: rotate(-55deg); }
+  100% { transform: rotate(-20deg); }
+}
+
+/* ── Wood Chip Explosion Particle System ──────────────── */
+.chip-explosion {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 100;
+  pointer-events: none;
+}
+
+.wood-chip {
+  position: absolute;
+  left: -4px;
+  top: -4px;
+  opacity: 0;
+  border-radius: 1px;
+  transform: translate(0, 0) rotate(0deg);
+  will-change: transform, opacity;
+}
+
+.chip-explosion.explode .wood-chip {
+  /* Exactly at 2.3s, fire the explosion out rapidly */
+  animation: explode-chip 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) 2.3s forwards;
+}
+
+@keyframes explode-chip {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) rotate(0deg) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: 
+      rotate(var(--angle)) 
+      translate(var(--dist)) 
+      rotate(var(--rot))
+      scale(0.3);
+  }
+}
+
+/* ── Brand Text & Animation ───────────────────────────── */
+.lo-brand-container {
+  opacity: 0;
+  transform: translateY(15px);
+  margin-top: -30px; /* Closes the gap between elephant and text */
+  animation: 
+    lo-fade-in-up 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards,
+    quiet-breathe 5s ease-in-out infinite 1.5s;
+}
+
+.lo-brand-name {
+  font-family: var(--font-serif, 'Playfair Display', Georgia, serif);
+  font-size: 32px;
+  font-weight: 400;
+  color: var(--text-primary, #252827);
+  text-transform: uppercase;
+  /* Cinematic reveal starting values */
+  letter-spacing: 0.22em;
+  margin-right: -0.22em;
+  opacity: 0;
+  animation: cinematic-reveal 1.8s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+  animation-delay: 0.4s;
+}
+
+@keyframes cinematic-reveal {
+  0% {
+    opacity: 0;
+    letter-spacing: 0.8em;
+    margin-right: -0.8em;
+    filter: blur(15px);
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 1;
+    letter-spacing: 0.22em;
+    margin-right: -0.22em;
+    filter: blur(0px);
+    transform: scale(1);
+  }
+}
+
+.lo-handicrafts span {
+  opacity: 0;
+  animation: handicrafts-cascade 0.8s cubic-bezier(0.2, 1, 0.3, 1) forwards;
+}
+
+.lo-handicrafts span:nth-child(1) { animation-delay: 1.4s; }
+.lo-handicrafts span:nth-child(2) { animation-delay: 1.45s; }
+.lo-handicrafts span:nth-child(3) { animation-delay: 1.5s; }
+.lo-handicrafts span:nth-child(4) { animation-delay: 1.55s; }
+.lo-handicrafts span:nth-child(5) { animation-delay: 1.6s; }
+.lo-handicrafts span:nth-child(6) { animation-delay: 1.65s; }
+.lo-handicrafts span:nth-child(7) { animation-delay: 1.7s; }
+.lo-handicrafts span:nth-child(8) { animation-delay: 1.75s; }
+.lo-handicrafts span:nth-child(9) { animation-delay: 1.8s; }
+.lo-handicrafts span:nth-child(10) { animation-delay: 1.85s; }
+.lo-handicrafts span:nth-child(11) { animation-delay: 1.9s; }
+
+@keyframes handicrafts-cascade {
+  0% { opacity: 0; transform: translateY(8px); filter: drop-shadow(0 0 5px #FFF); color: #FFF; }
+  100% { opacity: 1; transform: translateY(0); filter: drop-shadow(0 0 0px #FFF); color: var(--accent-brass); }
+}
+
+.lo-subtitle {
+  margin-top: 14px;
+  font-family: var(--font-sans, 'Outfit', sans-serif);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  margin-right: -0.18em;
+  text-transform: uppercase;
+  color: var(--text-secondary, #6B6F6D);
+  opacity: 0;
+  animation: lo-fade-in 1.2s ease forwards, lo-pulse 2.2s ease-in-out infinite 1.5s;
+}
+
+@keyframes lo-fade-in-up {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes lo-fade-in {
+  to { opacity: 0.65; }
+}
+
+@keyframes lo-pulse {
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 0.85; }
+}
+
+@keyframes quiet-breathe {
+  0%, 100% { 
+    transform: translateY(0); 
+    filter: drop-shadow(0 0 0 rgba(194, 168, 132, 0)); 
+  }
+  50% { 
+    transform: translateY(-3px); 
+    filter: drop-shadow(0 6px 12px rgba(194, 168, 132, 0.25)); 
+  }
+}

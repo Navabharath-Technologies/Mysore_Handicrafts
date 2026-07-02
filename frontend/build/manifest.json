@@ -1,0 +1,9 @@
+{
+  "short_name": "Mysore Handicrafts",
+  "name": "Mysore Handicrafts | Traditional Indian Art",
+  "icons": [],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#FAF9F6",
+  "background_color": "#FAF9F6"
+}
