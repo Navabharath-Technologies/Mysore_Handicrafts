@@ -153,3 +153,4 @@ export default function InspirationMasonry({ products, onOpenDetail }) {
     </section>
   );
 }
+

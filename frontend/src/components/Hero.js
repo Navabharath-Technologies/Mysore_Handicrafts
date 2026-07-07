@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import MagneticButton from './MagneticButton';
-import teakwoodHeroImg from '../images/teakwood_hero.png';
-import woodCarvingsHeroImg from '../images/wood_carvings_hero.png';
-import sandalwoodHeroImg from '../images/sandalwood_hero.png';
-import wallDecorHeroImg from '../images/wall_decor_hero.png';
+import teakwoodHeroImg from '../images/teakwood_hero.webp';
+import woodCarvingsHeroImg from '../images/wood_carvings_hero.webp';
+import sandalwoodHeroImg from '../images/sandalwood_hero.webp';
+import wallDecorHeroImg from '../images/wall_decor_hero.webp';
 
 const heroSlides = [
   {
@@ -105,3 +105,4 @@ export default function Hero({ setActiveTab }) {
     </div>
   );
 }
+

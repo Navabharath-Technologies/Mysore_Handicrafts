@@ -32,3 +32,4 @@ const WatermarkImage = ({ src, alt, className, style, onClick, wrapClassName, sh
 };
 
 export default WatermarkImage;
+

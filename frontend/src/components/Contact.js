@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Reveal from './Reveal';
-import contactHeroImg from '../images/contact-hero.png';
+import contactHeroImg from '../images/contact-hero.webp';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -307,3 +307,4 @@ ${formData.message}`;
     </section>
   );
 }
+

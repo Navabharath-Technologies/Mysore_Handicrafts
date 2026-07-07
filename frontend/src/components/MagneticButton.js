@@ -49,3 +49,4 @@ export default function MagneticButton({ children, className = '', onClick, ...p
     </button>
   );
 }
+

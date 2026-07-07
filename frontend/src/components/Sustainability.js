@@ -1,6 +1,6 @@
 import React from 'react';
 import Reveal from './Reveal';
-import aboutStoryImg from '../images/elephants_hero.png';
+import aboutStoryImg from '../images/elephants_hero.webp';
 
 export default function Sustainability() {
   return (
@@ -65,3 +65,4 @@ export default function Sustainability() {
     </section>
   );
 }
+

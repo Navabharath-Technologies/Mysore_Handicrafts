@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import Reveal from './Reveal';
-import aboutStoryImg from '../images/about-story-sandalwood.jpg';
+import aboutStoryImg from '../images/about-story-sandalwood.webp';
 
 const AnimatedCounter = ({ value, label }) => {
   const [count, setCount] = useState(0);
@@ -344,3 +344,4 @@ export default function About() {
     </section>
   );
 }
+
