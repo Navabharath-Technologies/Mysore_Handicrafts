@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/Mysore_Handicrafts/static/css/main.778feced.css",
+    "main.css": "/Mysore_Handicrafts/static/css/main.0e97a07f.css",
     "main.js": "/Mysore_Handicrafts/static/js/main.28bc9860.js",
     "static/media/about-story-sandalwood.webp": "/Mysore_Handicrafts/static/media/about-story-sandalwood.57d87454e74c26e009ef.webp",
     "static/media/cat_wood_carvings.webp": "/Mysore_Handicrafts/static/media/cat_wood_carvings.e2ce934a73d59debee73.webp",
@@ -17,11 +17,11 @@
     "static/media/sandalwood_hero.webp": "/Mysore_Handicrafts/static/media/sandalwood_hero.faf618a2c994390870d9.webp",
     "static/media/paper-texture.webp": "/Mysore_Handicrafts/static/media/paper-texture.5de749245a93d8f69d6a.webp",
     "index.html": "/Mysore_Handicrafts/index.html",
-    "main.778feced.css.map": "/Mysore_Handicrafts/static/css/main.778feced.css.map",
+    "main.0e97a07f.css.map": "/Mysore_Handicrafts/static/css/main.0e97a07f.css.map",
     "main.28bc9860.js.map": "/Mysore_Handicrafts/static/js/main.28bc9860.js.map"
   },
   "entrypoints": [
-    "static/css/main.778feced.css",
+    "static/css/main.0e97a07f.css",
     "static/js/main.28bc9860.js"
   ]
 }
