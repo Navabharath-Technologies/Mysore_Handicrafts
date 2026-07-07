@@ -103,8 +103,9 @@ export default function Catalog({ products, onOpenDetail, pinnedIds, onTogglePin
             )}
           </p>
         </div>
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '12px', maxWidth: '100%', minWidth: 0 }}>
-          <ul className="catalog-filters hide-scrollbar" style={{ margin: 0, maxWidth: '100%', overflowX: 'auto', paddingBottom: '4px', whiteSpace: 'nowrap' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '12px', width: '100%', minWidth: 0 }}>
+          {/* Sub Filters */}
+          <ul className="catalog-filters hide-scrollbar" style={{ margin: 0, width: '100%', overflowX: 'auto', paddingBottom: '4px', whiteSpace: 'nowrap' }}>
             {categories.map(cat => (
               <li key={cat.key} style={{ flexShrink: 0 }}>
                 <button
