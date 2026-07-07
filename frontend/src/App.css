@@ -1955,8 +1955,8 @@
 
   /* Hero slide adjustments for mobile */
   .hero-slide {
-    align-items: flex-start !important;
-    padding-top: 90px !important;
+    align-items: center !important;
+    padding-top: 0 !important;
   }
 
   .hero-content {
