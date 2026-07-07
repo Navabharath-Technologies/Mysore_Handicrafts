@@ -1953,40 +1953,92 @@
     /* Hide navigation links on mobile */
   }
 
-  /* Hero slide adjustments for mobile */
-  .hero-slide {
-    align-items: center !important;
+  /* Force header to always have a solid background on mobile */
+  .navbar-container::before {
+    opacity: 1 !important;
+  }
+
+  /* Hero adjustments for mobile (Text on top of Image) */
+  .hero-wrapper {
+    display: grid !important;
+    height: auto !important;
+    min-height: auto !important;
+    margin-top: 35px !important; /* Reduced from 45px for a tiny final shift upward */
     padding-top: 0 !important;
+    background-color: var(--bg-primary) !important;
+  }
+
+  .hero-slide {
+    grid-area: 1 / 1 !important;
+    position: relative !important;
+    display: grid !important;
+    height: auto !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .hero-image {
+    grid-area: 1 / 1 !important;
+    position: relative !important;
+    width: 100% !important;
+    height: auto !important; 
+    aspect-ratio: 4 / 3 !important; /* Nice rectangular banner */
+    object-fit: cover !important; 
+    transform: none !important;
+  }
+
+  .hero-image-overlay {
+    grid-area: 1 / 1 !important;
+    display: block !important;
+    position: relative !important;
+    height: 100% !important;
+    width: 100% !important;
   }
 
   .hero-content {
-    padding: 0 24px !important;
+    grid-area: 1 / 1 !important;
+    position: relative !important;
+    padding: 45px 20px 20px 20px !important; /* Increased top padding slightly to nudge the text down */
+    margin-top: 0 !important; 
+    background-color: transparent !important;
+    height: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
     align-items: center !important;
     text-align: center !important;
     justify-content: center !important;
-    height: auto !important;
+    z-index: 2 !important;
   }
 
   .hero-title {
     font-size: 30px !important;
     margin-bottom: 16px !important;
+    text-shadow: 0 2px 10px rgba(255,255,255,0.5) !important;
   }
 
   .hero-subtitle {
     font-size: 12px !important;
     margin-bottom: 12px !important;
     letter-spacing: 0.2em !important;
+    text-shadow: 0 2px 10px rgba(255,255,255,0.5) !important;
   }
 
   .hero-description {
     font-size: 14px !important;
     margin-bottom: 24px !important;
+    text-shadow: 0 2px 10px rgba(255,255,255,0.5) !important;
   }
 
   .hero-nav {
-    right: 50% !important;
-    transform: translateX(50%) !important;
-    bottom: 30px !important;
+    grid-area: 2 / 1 !important;
+    position: relative !important;
+    right: auto !important;
+    bottom: auto !important;
+    transform: none !important;
+    justify-content: center !important;
+    padding: 0 0 25px 0 !important; /* Reduced top padding to 0 to shrink the gap */
+    background-color: var(--bg-primary) !important;
+    margin: 0 !important;
     gap: 8px !important;
   }
 
@@ -1996,7 +2048,6 @@
 
   .hero-scroll-indicator {
     display: none !important;
-    /* Hide scroll indicator on mobile to prevent clutter */
   }
 
   /* Banner Strip */
