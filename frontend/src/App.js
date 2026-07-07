@@ -17,13 +17,13 @@ import WatermarkImage from './components/WatermarkImage';
 import Reveal from './components/Reveal';
 import MagneticButton from './components/MagneticButton';
 import useProducts from './data/useProducts';
-import homeCtaImg from './images/home-cta.png';
-import royalHeritageBannerImg from './images/royal_heritage_banner_new2.png';
-import catSandalwoodImg from './images/cat_sandalwood_new2.png';
+import homeCtaImg from './images/home-cta.webp';
+import royalHeritageBannerImg from './images/royal_heritage_banner_new2.webp';
+import catSandalwoodImg from './images/cat_sandalwood_new2.webp';
 import catWoodCarvingsImg from './images/cat_wood_carvings.avif';
 
-import catTeakwoodImg from './images/cat_teakwood_new.png';
-import catWallDecorImg from './images/cat_wall_decor.png';
+import catTeakwoodImg from './images/cat_teakwood_new.webp';
+import catWallDecorImg from './images/cat_wall_decor.webp';
 function App() {
   const { products } = useProducts();
   const [isLoading, setIsLoading] = useState(true);
