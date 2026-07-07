@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/Mysore_Handicrafts/static/css/main.ce79bd91.css",
-    "main.js": "/Mysore_Handicrafts/static/js/main.11afb87e.js",
+    "main.css": "/Mysore_Handicrafts/static/css/main.eaf857fc.css",
+    "main.js": "/Mysore_Handicrafts/static/js/main.ef37d1c5.js",
     "static/media/cat_wall_decor.png": "/Mysore_Handicrafts/static/media/cat_wall_decor.16f58434533a4ccd1ad8.png",
     "static/media/wall_decor_hero.png": "/Mysore_Handicrafts/static/media/wall_decor_hero.16f58434533a4ccd1ad8.png",
     "static/media/wood_carvings_hero.png": "/Mysore_Handicrafts/static/media/wood_carvings_hero.b0abbc6b78d5d40b76ac.png",
@@ -17,11 +17,11 @@
     "static/media/paper-texture.png": "/Mysore_Handicrafts/static/media/paper-texture.4992501c931edf3d0b7b.png",
     "static/media/cat_wood_carvings.avif": "/Mysore_Handicrafts/static/media/cat_wood_carvings.2558b1a5eaf52da3ecb2.avif",
     "index.html": "/Mysore_Handicrafts/index.html",
-    "main.ce79bd91.css.map": "/Mysore_Handicrafts/static/css/main.ce79bd91.css.map",
-    "main.11afb87e.js.map": "/Mysore_Handicrafts/static/js/main.11afb87e.js.map"
+    "main.eaf857fc.css.map": "/Mysore_Handicrafts/static/css/main.eaf857fc.css.map",
+    "main.ef37d1c5.js.map": "/Mysore_Handicrafts/static/js/main.ef37d1c5.js.map"
   },
   "entrypoints": [
-    "static/css/main.ce79bd91.css",
-    "static/js/main.11afb87e.js"
+    "static/css/main.eaf857fc.css",
+    "static/js/main.ef37d1c5.js"
   ]
 }
