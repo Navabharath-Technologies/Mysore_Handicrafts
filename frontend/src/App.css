@@ -982,7 +982,7 @@
 
   /* Add padding back to the close button */
   .detail-drawer .drawer-close-btn {
-    margin: 20px 16px 0 16px;
+    margin: 20px 16px 20px 16px;
   }
 
   /* Gallery fills full width naturally (no padding on drawer) */
@@ -2174,7 +2174,7 @@ body.mobile-menu-active .App {
   top: 0;
   right: 0; /* Menu sits on the right side */
   bottom: 0;
-  width: 80%; /* Give it plenty of room */
+  width: 100vw; /* Fully cover screen on mobile */
   padding: 60px 30px;
   display: flex;
   flex-direction: column;
