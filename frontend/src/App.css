@@ -971,8 +971,60 @@
   .detail-drawer {
     left: 0;
     right: 0;
-    width: auto;
+    width: 100vw;
+    max-width: 100vw;
     padding: 24px 20px;
+    overflow-x: hidden;
+  }
+
+  /* Ensure all inner drawer elements don't overflow the screen */
+  .detail-drawer * {
+    max-width: 100%;
+  }
+
+  .drawer-gallery-wrapper {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .drawer-main-img-wrap {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+  }
+
+  .drawer-thumbnails {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    gap: 8px;
+    padding-bottom: 4px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .drawer-thumb {
+    flex-shrink: 0;
+    width: 60px;
+    height: 60px;
+  }
+
+  .drawer-name {
+    font-size: 22px !important;
+    word-break: break-word;
+  }
+
+  .drawer-description {
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .drawer-btn-primary {
+    width: 100%;
+  }
+
+  .drawer-chips {
+    flex-wrap: wrap;
   }
 }
 
