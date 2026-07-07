@@ -1,14 +1,27 @@
 {
   "files": {
-    "main.css": "/Mysore_Handicrafts/static/css/main.ffc6e877.css",
-    "main.js": "/Mysore_Handicrafts/static/js/main.47c96962.js",
+    "main.css": "/Mysore_Handicrafts/static/css/main.ce79bd91.css",
+    "main.js": "/Mysore_Handicrafts/static/js/main.11afb87e.js",
+    "static/media/cat_wall_decor.png": "/Mysore_Handicrafts/static/media/cat_wall_decor.16f58434533a4ccd1ad8.png",
+    "static/media/wall_decor_hero.png": "/Mysore_Handicrafts/static/media/wall_decor_hero.16f58434533a4ccd1ad8.png",
+    "static/media/wood_carvings_hero.png": "/Mysore_Handicrafts/static/media/wood_carvings_hero.b0abbc6b78d5d40b76ac.png",
+    "static/media/contact-hero.png": "/Mysore_Handicrafts/static/media/contact-hero.c79a01847f325e7762da.png",
+    "static/media/royal_heritage_banner_new2.png": "/Mysore_Handicrafts/static/media/royal_heritage_banner_new2.4fc312b1b93783e758ef.png",
+    "static/media/cat_teakwood_new.png": "/Mysore_Handicrafts/static/media/cat_teakwood_new.9e6f0aeeeb6aa4af4bfc.png",
+    "static/media/elephants_hero.png": "/Mysore_Handicrafts/static/media/elephants_hero.de972f299c29f5f3df31.png",
+    "static/media/cat_sandalwood_new2.png": "/Mysore_Handicrafts/static/media/cat_sandalwood_new2.5e2999474fd55e1232c0.png",
+    "static/media/home-cta.png": "/Mysore_Handicrafts/static/media/home-cta.feda2757ad0e590d8f52.png",
+    "static/media/sandalwood_hero.png": "/Mysore_Handicrafts/static/media/sandalwood_hero.39d5efba83646809b2fb.png",
+    "static/media/teakwood_hero.png": "/Mysore_Handicrafts/static/media/teakwood_hero.d7ecb3e5f4695b219790.png",
+    "static/media/about-story-sandalwood.jpg": "/Mysore_Handicrafts/static/media/about-story-sandalwood.9a7f1ff016b0a95d1bf5.jpg",
     "static/media/paper-texture.png": "/Mysore_Handicrafts/static/media/paper-texture.4992501c931edf3d0b7b.png",
+    "static/media/cat_wood_carvings.avif": "/Mysore_Handicrafts/static/media/cat_wood_carvings.2558b1a5eaf52da3ecb2.avif",
     "index.html": "/Mysore_Handicrafts/index.html",
-    "main.ffc6e877.css.map": "/Mysore_Handicrafts/static/css/main.ffc6e877.css.map",
-    "main.47c96962.js.map": "/Mysore_Handicrafts/static/js/main.47c96962.js.map"
+    "main.ce79bd91.css.map": "/Mysore_Handicrafts/static/css/main.ce79bd91.css.map",
+    "main.11afb87e.js.map": "/Mysore_Handicrafts/static/js/main.11afb87e.js.map"
   },
   "entrypoints": [
-    "static/css/main.ffc6e877.css",
-    "static/js/main.47c96962.js"
+    "static/css/main.ce79bd91.css",
+    "static/js/main.11afb87e.js"
   ]
 }

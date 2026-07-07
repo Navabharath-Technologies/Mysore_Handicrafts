@@ -1763,6 +1763,11 @@
     width: 100%;
   }
 
+  .catalog-section {
+    padding: 0 20px;
+    margin: 20px auto 60px;
+  }
+
   /* Header & Navbar mobile styling */
   .navbar-container {
     height: 70px;
