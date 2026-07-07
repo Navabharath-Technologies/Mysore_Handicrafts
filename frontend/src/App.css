@@ -1758,8 +1758,14 @@
 
 /* ================= TABLET RESPONSIVE MEDIA QUERIES (min-width: 601px and max-width: 992px) ================= */
 @media (min-width: 601px) and (max-width: 992px) {
+  .hero-slide {
+    align-items: flex-start;
+    padding-top: 100px;
+  }
   .hero-content {
     padding: 0 40px;
+    align-items: flex-start;
+    text-align: left;
   }
   .hero-title {
     font-size: clamp(28px, 4.5vw, 48px) !important;
@@ -1813,12 +1819,17 @@
   }
 
   /* Hero slide adjustments for mobile */
+  .hero-slide {
+    align-items: flex-start !important;
+    padding-top: 90px !important;
+  }
+
   .hero-content {
     padding: 0 24px !important;
     align-items: center !important;
     text-align: center !important;
     justify-content: center !important;
-    height: 100% !important;
+    height: auto !important;
   }
 
   .hero-title {
