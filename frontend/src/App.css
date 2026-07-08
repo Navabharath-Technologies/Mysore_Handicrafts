@@ -3596,3 +3596,35 @@ body.mobile-menu-active .App {
   background: rgba(0,0,0,0.6);
 }
 
+/* Animated Swipe Hint */
+.swipe-hint-container {
+  position: absolute;
+  top: 50%;
+  left: 12vw;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  color: var(--accent-brass);
+  opacity: 0;
+  pointer-events: none;
+  animation: swipeHintAnim 2.5s ease-in-out 3 forwards;
+  animation-delay: 0.5s;
+}
+
+@keyframes swipeHintAnim {
+  0% {
+    opacity: 0;
+    transform: translate(0, -50%);
+  }
+  20% {
+    opacity: 0.8;
+  }
+  80% {
+    opacity: 0;
+    transform: translate(50px, -50%);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(50px, -50%);
+  }
+}

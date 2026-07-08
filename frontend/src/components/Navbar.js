@@ -230,6 +230,14 @@ export default function Navbar({ activeTab, setActiveTab, pinnedCount }) {
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
         >
+          {isMobileMenuOpen && (
+            <div className="swipe-hint-container">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </div>
+          )}
+
           <div className="mobile-menu-panel animate-slide-in" onClick={(e) => e.stopPropagation()}>
             <div className="mobile-menu-header">
               <span className="mobile-menu-logo" style={{ display: 'flex', flexDirection: 'column', alignItems: 'stretch', width: 'fit-content', gap: '0px' }}>
