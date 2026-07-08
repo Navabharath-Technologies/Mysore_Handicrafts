@@ -6,6 +6,8 @@ export default function Navbar({ activeTab, setActiveTab, pinnedCount }) {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [touchStart, setTouchStart] = useState(null);
+  const [touchEnd, setTouchEnd] = useState(null);
 
   // Handle glassmorphism blur shift on page scroll
   useEffect(() => {
@@ -59,6 +61,24 @@ export default function Navbar({ activeTab, setActiveTab, pinnedCount }) {
   const handleSearchSubmit = (e) => {
     e.preventDefault();
     submitSearch(searchQuery);
+  };
+
+  const handleTouchStart = (e) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    // Right swipe closes the menu
+    if (distance < -50) {
+      setIsMobileMenuOpen(false);
+    }
   };
 
   return (
@@ -203,7 +223,13 @@ export default function Navbar({ activeTab, setActiveTab, pinnedCount }) {
 
       {/* Mobile Menu Backdrop & Drawer (Rendered via Portal) */}
       {createPortal(
-        <div className={`mobile-menu-backdrop ${isMobileMenuOpen ? 'open' : ''}`} onClick={() => setIsMobileMenuOpen(false)}>
+        <div 
+          className={`mobile-menu-backdrop ${isMobileMenuOpen ? 'open' : ''}`} 
+          onClick={() => setIsMobileMenuOpen(false)}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+        >
           <div className="mobile-menu-panel animate-slide-in" onClick={(e) => e.stopPropagation()}>
             <div className="mobile-menu-header">
               <span className="mobile-menu-logo" style={{ display: 'flex', flexDirection: 'column', alignItems: 'stretch', width: 'fit-content', gap: '0px' }}>

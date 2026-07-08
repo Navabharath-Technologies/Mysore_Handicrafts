@@ -2052,15 +2052,27 @@
 
   /* Banner Strip */
   .featured-banner-strip {
-    flex-direction: column;
-    align-items: center;
-    gap: 16px;
-    padding: 24px 20px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px 10px;
+    padding: 24px 15px;
   }
 
   .featured-banner-item {
     width: 100%;
-    justify-content: center;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  .featured-banner-icon {
+    margin-top: 2px;
+  }
+
+  .featured-banner-text {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-align: left;
+    line-height: 1.4;
   }
 
   /* Featured products layout */
