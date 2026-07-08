@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Reveal from './Reveal';
 import WatermarkImage from './WatermarkImage';
 import { getBaseTermForSynonym } from '../utils/synonyms';
@@ -22,6 +22,37 @@ export default function Catalog({ products, onOpenDetail, pinnedIds, onTogglePin
       .map(p => p.subcategory?.trim()?.toLowerCase())
       .filter(Boolean)
   )].sort();
+
+  const [scrollDirection, setScrollDirection] = useState('up');
+  const [isPastThreshold, setIsPastThreshold] = useState(false);
+
+  useEffect(() => {
+    let lastScrollY = window.pageYOffset;
+    
+    const handleScroll = () => {
+      const scrollY = window.pageYOffset;
+      const direction = scrollY > lastScrollY ? 'down' : 'up';
+      
+      // Determine if we scrolled past the top of the catalog section
+      const catalogEl = document.getElementById('catalog-section');
+      if (catalogEl) {
+         if (scrollY > catalogEl.offsetTop + 100) {
+            setIsPastThreshold(true);
+         } else {
+            setIsPastThreshold(false);
+         }
+      }
+
+      if (direction !== scrollDirection && (scrollY - lastScrollY > 10 || scrollY - lastScrollY < -10)) {
+        setScrollDirection(direction);
+      }
+      
+      lastScrollY = scrollY > 0 ? scrollY : 0;
+    };
+    
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [scrollDirection]);
 
   // 1. Filter by category first and apply a deterministic shuffle
   let filtered = [...baseCategoryProducts];
@@ -103,9 +134,9 @@ export default function Catalog({ products, onOpenDetail, pinnedIds, onTogglePin
             )}
           </p>
         </div>
-        <div className="catalog-filters-sticky-container">
+        <div className={`catalog-filters-sticky-wrap ${isPastThreshold && scrollDirection === 'down' ? 'sticky-hidden' : ''}`}>
           {/* Sub Filters */}
-          <ul className="catalog-filters hide-scrollbar" style={{ margin: 0, width: '100%', overflowX: 'auto', paddingBottom: '4px', whiteSpace: 'nowrap' }}>
+          <ul className="catalog-filters hide-scrollbar" style={{ margin: 0, width: '100%', overflowX: 'auto', paddingBottom: '8px', whiteSpace: 'nowrap' }}>
             {categories.map(cat => (
               <li key={cat.key} style={{ flexShrink: 0 }}>
                 <button
@@ -124,12 +155,11 @@ export default function Catalog({ products, onOpenDetail, pinnedIds, onTogglePin
 
           {/* Dynamic Subcategory Filters */}
           {uniqueSubcategories.length > 0 && (
-            <ul className="catalog-filters hide-scrollbar" style={{ margin: 0, gap: '6px', maxWidth: '100%', overflowX: 'auto', paddingBottom: '4px', whiteSpace: 'nowrap' }}>
+            <ul className="catalog-filters hide-scrollbar" style={{ margin: 0, gap: '6px', maxWidth: '100%', overflowX: 'auto', paddingBottom: '4px', whiteSpace: 'nowrap', marginTop: '6px' }}>
               <li key="all-subs" style={{ flexShrink: 0 }}>
                 <button
-                  className={`catalog-filter-btn ${activeSubFilter === 'all' ? 'active' : ''}`}
+                  className={`catalog-subfilter-btn ${activeSubFilter === 'all' ? 'active' : ''}`}
                   onClick={() => setActiveSubFilter('all')}
-                  style={{ padding: '6px 14px', fontSize: '11px', letterSpacing: '0.05em' }}
                 >
                   All Types
                 </button>
@@ -137,9 +167,9 @@ export default function Catalog({ products, onOpenDetail, pinnedIds, onTogglePin
               {uniqueSubcategories.map(subcat => (
                 <li key={subcat} style={{ flexShrink: 0 }}>
                   <button
-                    className={`catalog-filter-btn ${activeSubFilter === subcat ? 'active' : ''}`}
+                    className={`catalog-subfilter-btn ${activeSubFilter === subcat ? 'active' : ''}`}
                     onClick={() => setActiveSubFilter(subcat)}
-                    style={{ padding: '6px 14px', fontSize: '11px', textTransform: 'capitalize', letterSpacing: '0.05em' }}
+                    style={{ textTransform: 'capitalize' }}
                   >
                     {subcat}
                   </button>

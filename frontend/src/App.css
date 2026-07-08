@@ -607,18 +607,46 @@
   text-transform: uppercase;
   letter-spacing: 0.15em;
   color: var(--text-secondary);
-  background-color: var(--bg-secondary);
+  background-color: var(--bg-primary);
+  border: 1px solid var(--bg-tertiary);
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 .catalog-filter-btn:hover {
   color: var(--text-primary);
   background-color: var(--bg-tertiary);
+  border-color: var(--bg-tertiary);
 }
 
 .catalog-filter-btn.active {
   color: var(--bg-primary);
   background-color: var(--text-primary);
+  border-color: var(--text-primary);
+}
+
+.catalog-subfilter-btn {
+  padding: 10px 20px;
+  border-radius: 40px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--text-secondary);
+  background-color: var(--bg-primary);
+  border: 1px solid var(--bg-tertiary);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.catalog-subfilter-btn:hover {
+  color: var(--text-primary);
+  background-color: var(--bg-tertiary);
+  border-color: var(--bg-tertiary);
+}
+
+.catalog-subfilter-btn.active {
+  color: var(--bg-primary);
+  background-color: var(--text-primary);
+  border-color: var(--text-primary);
 }
 
 .dense-grid {
@@ -2077,6 +2105,38 @@
 
   .hero-nav-dot {
     width: 24px !important;
+  }
+
+  /* Catalog Mobile Sticky Filters and Hierarchy */
+  .catalog-subfilter-btn {
+    padding: 6px 14px;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    background-color: transparent;
+    border: 1px dashed var(--accent-brass-dark);
+    border-radius: 6px; 
+    color: var(--text-secondary);
+  }
+
+  .catalog-subfilter-btn.active {
+    background-color: var(--accent-brass);
+    color: #fff;
+    border: 1px solid var(--accent-brass);
+  }
+
+  .catalog-filters-sticky-wrap {
+    position: sticky;
+    top: 69px; /* Just below the mobile navbar */
+    z-index: 45;
+    background-color: var(--bg-primary);
+    padding: 8px 20px;
+    margin: 0 -20px; /* Stretch out of parent padding */
+    border-bottom: 1px solid var(--glass-border);
+    transition: transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+  }
+  
+  .catalog-filters-sticky-wrap.sticky-hidden {
+    transform: translateY(-200%);
   }
 
   .hero-scroll-indicator {
