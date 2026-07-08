@@ -7,6 +7,8 @@ export default function DetailDrawer({ product, isOpen, onClose, isPinned, onTog
   const [activeSwatch, setActiveSwatch] = useState(0);
   const [animateIn, setAnimateIn] = useState(false);
   const [lightboxImgSrc, setLightboxImgSrc] = useState(null);
+  const [touchStart, setTouchStart] = useState(null);
+  const [touchEnd, setTouchEnd] = useState(null);
 
   useEffect(() => {
     if (isOpen) {
@@ -61,6 +63,39 @@ export default function DetailDrawer({ product, isOpen, onClose, isPinned, onTog
 
 
 
+  const handleTouchStart = (e) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
+    
+    if (isLeftSwipe || isRightSwipe) {
+      const currentIndex = uniqueThumbnails.findIndex(t => t.key === activeThumb);
+      if (currentIndex === -1) return;
+      
+      let nextIndex = currentIndex;
+      if (isLeftSwipe) {
+        nextIndex = (currentIndex + 1) % uniqueThumbnails.length;
+      } else {
+        nextIndex = (currentIndex - 1 + uniqueThumbnails.length) % uniqueThumbnails.length;
+      }
+      
+      const nextThumb = uniqueThumbnails[nextIndex];
+      setActiveThumb(nextThumb.key);
+      const matchingSwatchIdx = product.swatches.findIndex(sw => sw.image === nextThumb.url);
+      setActiveSwatch(matchingSwatchIdx);
+    }
+  };
+
   return (
     <>
       <div className={`drawer-backdrop ${animateIn ? 'open' : ''}`} onClick={onClose} />
@@ -79,6 +114,9 @@ export default function DetailDrawer({ product, isOpen, onClose, isPinned, onTog
           <div 
             className="drawer-main-img-wrap"
             onClick={() => setLightboxImgSrc(activeSwatch >= 0 && activeSwatch < product.swatches.length ? product.swatches[activeSwatch].image : product.images[activeThumb])}
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
             style={{ cursor: 'zoom-in' }}
           >
             <WatermarkImage
@@ -195,7 +233,11 @@ Please let me know more details about its availability and shipping.`;
             </svg>
           </button>
           <div className="lightbox-content" onClick={(e) => e.stopPropagation()}>
-            <img src={lightboxImgSrc} alt={product.name} className="lightbox-img" />
+            <WatermarkImage
+              src={lightboxImgSrc}
+              alt={product.name}
+              className="lightbox-img"
+            />
           </div>
         </div>
       )}

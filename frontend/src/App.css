@@ -321,7 +321,8 @@
   z-index: -1;
 }
 
-.btn-luxury:hover::before {
+.btn-luxury:hover::before,
+.btn-luxury:active::before {
   left: 150%;
 }
 
@@ -331,7 +332,8 @@
   transition: opacity 0.8s ease 1s, transform 0.8s ease 1s, background-color 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-.btn-luxury:hover {
+.btn-luxury:hover,
+.btn-luxury:active {
   background-color: var(--accent-brass-dark);
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(194, 168, 132, 0.25);
@@ -567,6 +569,34 @@
   display: flex;
   list-style: none;
   gap: 12px;
+}
+
+.catalog-filters-sticky-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  width: 100%;
+  min-width: 0;
+  position: sticky;
+  top: 72px; /* Adjusted to sit just below navbar */
+  z-index: 10;
+  background-color: var(--bg-primary);
+  padding: 12px 0;
+  margin-top: -12px; /* Counter-act padding to keep visual alignment */
+}
+
+.catalog-category-desc {
+  font-size: 16px;
+  font-weight: 600;
+  font-family: var(--font-serif);
+  color: var(--text-primary);
+  line-height: 1.8;
+  font-style: italic;
+  letter-spacing: 0.02em;
+  opacity: 0.85;
+  border-left: 3px solid var(--accent-gold);
+  padding-left: 20px;
 }
 
 .catalog-filter-btn {
@@ -1017,6 +1047,9 @@
 
   .drawer-main-img-wrap .wm-img,
   .drawer-main-img-wrap .wm-blurred-bg {
+    position: absolute !important;
+    top: 0;
+    left: 0;
     width: 100% !important;
     height: 100% !important;
     max-width: none !important;
@@ -2082,8 +2115,15 @@
   }
 
   .featured-products-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  /* Make reveal animations much faster on mobile to prevent empty space */
+  .reveal-element {
+    transition: opacity 0.25s ease-out, transform 0.25s ease-out !important;
+    transition-delay: 0s !important;
+    transform: translateY(30px);
   }
 
   .section-headline {
@@ -2094,35 +2134,54 @@
     font-size: 28px;
   }
 
-  /* Full-width Lifestyle Banner */
   .lifestyle-banner-section {
-    height: 55vh;
+    height: auto !important;
+    aspect-ratio: 4 / 3;
     margin: 40px 0;
+    display: grid;
+    align-items: end;
+    background-position: center;
   }
 
   .lifestyle-banner-overlay {
-    padding: 24px;
-    background: linear-gradient(to top, rgba(250, 249, 246, 0.95) 45%, rgba(250, 249, 246, 0.3) 100%);
-    align-items: flex-end;
+    padding: 30px 20px 20px 20px;
+    background: linear-gradient(to top, rgba(250, 249, 246, 0.95) 15%, rgba(250, 249, 246, 0.6) 60%, rgba(250, 249, 246, 0) 100%);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    text-align: center;
   }
 
   .lifestyle-banner-content {
     max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .lifestyle-banner-heading {
     font-size: 26px;
     margin-bottom: 12px;
+    color: var(--text-primary);
+    text-shadow: none;
   }
 
   .lifestyle-banner-desc {
     font-size: 13px;
     margin-bottom: 20px;
+    color: var(--text-primary);
+    text-shadow: none;
   }
 
   .lifestyle-banner-sub {
     margin-bottom: 8px;
     font-size: 11px;
+    color: var(--text-primary);
+    letter-spacing: 0.1em;
+    text-shadow: none;
   }
 
   /* Room Grid Spaces */
@@ -3427,6 +3486,13 @@ body.mobile-menu-active .App {
 }
 
 @media (max-width: 768px) {
+  .catalog-category-desc {
+    display: block;
+    margin-bottom: 20px;
+    font-size: 14px; /* Slightly smaller for mobile if needed */
+  }
+
+
   .contact-hero {
     height: 50vh;
     min-height: 350px;
@@ -3565,16 +3631,24 @@ body.mobile-menu-active .App {
 
 .lightbox-content {
   position: relative;
-  max-width: 90vw;
-  max-height: 90vh;
+  width: 90vw;
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .lightbox-img {
   max-width: 100%;
   max-height: 90vh;
-  object-fit: contain;
+  object-fit: contain !important;
   border-radius: 4px;
   box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+}
+
+.lightbox-content .wm-wrap {
+  width: 100%;
+  height: 100%;
 }
 
 .lightbox-close-btn {
@@ -3596,35 +3670,39 @@ body.mobile-menu-active .App {
   background: rgba(0,0,0,0.6);
 }
 
-/* Animated Swipe Hint */
-.swipe-hint-container {
-  position: absolute;
-  top: 50%;
-  left: 12vw;
-  transform: translateY(-50%);
+/* Animated Swipe Hint Inline */
+.swipe-hint-inline {
   display: flex;
   align-items: center;
-  color: var(--accent-brass);
+  gap: 12px;
+  color: var(--text-primary);
   opacity: 0;
+  margin-top: auto;
+  margin-bottom: 30px;
+  padding-left: 15px;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
   pointer-events: none;
-  animation: swipeHintAnim 2.5s ease-in-out 3 forwards;
+  animation: swipeHintAnimInline 6s ease-in-out forwards;
   animation-delay: 0.5s;
 }
 
-@keyframes swipeHintAnim {
-  0% {
-    opacity: 0;
-    transform: translate(0, -50%);
-  }
-  20% {
-    opacity: 0.8;
-  }
-  80% {
-    opacity: 0;
-    transform: translate(50px, -50%);
-  }
-  100% {
-    opacity: 0;
-    transform: translate(50px, -50%);
-  }
+@keyframes swipeHintAnimInline {
+  0% { opacity: 0; transform: translateX(0); }
+  5% { opacity: 1; transform: translateX(0); }
+  15% { opacity: 1; transform: translateX(30px); }
+  25% { opacity: 0; transform: translateX(30px); }
+  
+  35% { opacity: 0; transform: translateX(0); }
+  40% { opacity: 1; transform: translateX(0); }
+  50% { opacity: 1; transform: translateX(30px); }
+  60% { opacity: 0; transform: translateX(30px); }
+  
+  70% { opacity: 0; transform: translateX(0); }
+  75% { opacity: 1; transform: translateX(0); }
+  85% { opacity: 1; transform: translateX(30px); }
+  95% { opacity: 0; transform: translateX(30px); }
+  100% { opacity: 0; transform: translateX(30px); }
 }

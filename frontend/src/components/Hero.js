@@ -50,16 +50,49 @@ const heroSlides = [
 
 export default function Hero({ setActiveTab }) {
   const [current, setCurrent] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [touchStart, setTouchStart] = useState(null);
+  const [touchEnd, setTouchEnd] = useState(null);
 
   useEffect(() => {
+    if (!isAutoPlaying) return;
     const interval = setInterval(() => {
       setCurrent(prev => (prev + 1) % heroSlides.length);
     }, 5500);
     return () => clearInterval(interval);
-  }, []);
+  }, [isAutoPlaying]);
+
+  const handleTouchStart = (e) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+    setIsAutoPlaying(false);
+  };
+
+  const handleTouchMove = (e) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
+    
+    if (isLeftSwipe) {
+      setCurrent(prev => (prev + 1) % heroSlides.length);
+    } else if (isRightSwipe) {
+      setCurrent(prev => (prev - 1 + heroSlides.length) % heroSlides.length);
+    }
+  };
 
   return (
-    <div className="hero-wrapper">
+    <div 
+      className="hero-wrapper"
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+      onMouseDown={() => setIsAutoPlaying(false)}
+    >
       {heroSlides.map((slide, idx) => (
         <div key={slide.id} className={`hero-slide ${idx === current ? 'active' : ''}`}>
           <img src={slide.image} alt={slide.title} className={`hero-image hero-image-${slide.id}`} />
@@ -88,7 +121,10 @@ export default function Hero({ setActiveTab }) {
           <div
             key={idx}
             className={`hero-nav-dot ${idx === current ? 'active' : ''}`}
-            onClick={() => setCurrent(idx)}
+            onClick={() => {
+              setCurrent(idx);
+              setIsAutoPlaying(false);
+            }}
           >
             <div className="hero-nav-dot-fill" />
           </div>

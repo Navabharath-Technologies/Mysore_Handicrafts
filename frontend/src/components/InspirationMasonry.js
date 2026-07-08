@@ -30,9 +30,10 @@ export default function InspirationMasonry({ products, onOpenDetail }) {
 
     let intervalId;
     let isHovering = false;
+    let isManualInteraction = false;
 
     const advanceScroll = () => {
-      if (isHovering) return;
+      if (isHovering || isManualInteraction) return;
       // Scroll by one item width (approx 500px width + 80px gap)
       // We use 580 to reliably trigger the snap to the next item
       if (container.scrollLeft + container.clientWidth >= container.scrollWidth - 10) {
@@ -48,9 +49,16 @@ export default function InspirationMasonry({ products, onOpenDetail }) {
 
     const handleEnter = () => { isHovering = true; };
     const handleLeave = () => { isHovering = false; };
+    const handleInteraction = () => { 
+      isManualInteraction = true; 
+      if (intervalId) clearInterval(intervalId); 
+    };
 
     container.addEventListener('mouseenter', handleEnter);
     container.addEventListener('mouseleave', handleLeave);
+    container.addEventListener('touchstart', handleInteraction, { passive: true });
+    container.addEventListener('mousedown', handleInteraction);
+    container.addEventListener('wheel', handleInteraction, { passive: true });
 
     startAutoPlay();
 
@@ -58,6 +66,9 @@ export default function InspirationMasonry({ products, onOpenDetail }) {
       clearInterval(intervalId);
       container.removeEventListener('mouseenter', handleEnter);
       container.removeEventListener('mouseleave', handleLeave);
+      container.removeEventListener('touchstart', handleInteraction);
+      container.removeEventListener('mousedown', handleInteraction);
+      container.removeEventListener('wheel', handleInteraction);
     };
   }, []);
 

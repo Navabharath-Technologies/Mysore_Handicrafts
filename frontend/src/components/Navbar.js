@@ -230,14 +230,6 @@ export default function Navbar({ activeTab, setActiveTab, pinnedCount }) {
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
         >
-          {isMobileMenuOpen && (
-            <div className="swipe-hint-container">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <polyline points="9 18 15 12 9 6"></polyline>
-              </svg>
-            </div>
-          )}
-
           <div className="mobile-menu-panel animate-slide-in" onClick={(e) => e.stopPropagation()}>
             <div className="mobile-menu-header">
               <span className="mobile-menu-logo" style={{ display: 'flex', flexDirection: 'column', alignItems: 'stretch', width: 'fit-content', gap: '0px' }}>
@@ -302,6 +294,15 @@ export default function Navbar({ activeTab, setActiveTab, pinnedCount }) {
                 </li>
               </div>
             </ul>
+            {isMobileMenuOpen && (
+              <div className="swipe-hint-inline">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M5 12h14"></path>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+                <span>Swipe to close</span>
+              </div>
+            )}
             <div className="mobile-menu-footer">
               <span className="mobile-menu-copyright">© 2026 Mysore. Handcrafted Excellence.</span>
             </div>

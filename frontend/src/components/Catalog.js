@@ -65,7 +65,7 @@ export default function Catalog({ products, onOpenDetail, pinnedIds, onTogglePin
 
   return (
     <section className="catalog-section" id="catalog-section">
-      <div className="section-headline" style={{ textAlign: 'left', margin: '0 0 8px 0', padding: '0', maxWidth: 'none' }}>
+      <div className="section-headline" style={{ textAlign: 'left', margin: '0 0 8px 0', padding: '0', maxWidth: 'none', height: 'auto', minHeight: 'auto' }}>
         <h2 className="headline-main" style={{ textAlign: 'left' }}>Our Collection</h2>
       </div>
 
@@ -103,7 +103,7 @@ export default function Catalog({ products, onOpenDetail, pinnedIds, onTogglePin
             )}
           </p>
         </div>
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '12px', width: '100%', minWidth: 0 }}>
+        <div className="catalog-filters-sticky-container">
           {/* Sub Filters */}
           <ul className="catalog-filters hide-scrollbar" style={{ margin: 0, width: '100%', overflowX: 'auto', paddingBottom: '4px', whiteSpace: 'nowrap' }}>
             {categories.map(cat => (
@@ -152,18 +152,7 @@ export default function Catalog({ products, onOpenDetail, pinnedIds, onTogglePin
 
       {/* Category Description */}
       <div style={{ marginBottom: '35px', width: '100%' }}>
-        <p style={{
-          fontSize: '16px',
-          fontWeight: '600',
-          fontFamily: 'var(--font-serif)',
-          color: 'var(--text-primary)',
-          lineHeight: '1.8',
-          fontStyle: 'italic',
-          letterSpacing: '0.02em',
-          opacity: 0.85,
-          borderLeft: '3px solid var(--accent-gold)',
-          paddingLeft: '20px'
-        }}>
+        <p className="catalog-category-desc">
           {categories.find(c => c.key === activeFilter)?.desc}
         </p>
       </div>
