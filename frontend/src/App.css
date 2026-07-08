@@ -2226,7 +2226,7 @@ body.mobile-menu-active .App {
   right: 0; /* Menu sits on the right side */
   bottom: 0;
   width: 100vw; /* Fully cover screen on mobile */
-  padding: 60px 30px;
+  padding: 60px 30px 60px calc(15vw + 20px);
   display: flex;
   flex-direction: column;
 }

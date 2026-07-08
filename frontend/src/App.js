@@ -20,7 +20,7 @@ import useProducts from './data/useProducts';
 import homeCtaImg from './images/home-cta.webp';
 import royalHeritageBannerImg from './images/royal_heritage_banner_new2.webp';
 import catSandalwoodImg from './images/cat_sandalwood_new2.webp';
-import catWoodCarvingsImg from './images/cat_wood_carvings.avif';
+import catWoodCarvingsImg from './images/cat_wood_carvings.webp';
 
 import catTeakwoodImg from './images/cat_teakwood_new.webp';
 import catWallDecorImg from './images/cat_wall_decor.webp';
@@ -303,3 +303,4 @@ function App() {
 }
 
 export default App;
+
