@@ -681,9 +681,11 @@
   }
 
   .catalog-header {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 20px;
+    display: contents;
+  }
+
+  .catalog-title-wrap {
+    margin-bottom: 12px;
   }
 
   .catalog-filters {
@@ -2129,8 +2131,8 @@
     top: 69px; /* Just below the mobile navbar */
     z-index: 45;
     background-color: var(--bg-primary);
-    padding: 8px 20px;
-    margin: 0 -20px; /* Stretch out of parent padding */
+    padding: 12px 20px;
+    margin: 0 -20px 24px -20px; /* Stretch out of parent padding & replace catalog-header margin */
     border-bottom: 1px solid var(--glass-border);
     transition: transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
   }
