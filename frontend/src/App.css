@@ -2005,7 +2005,6 @@
   /* Prevent horizontal scrolling globally */
   html,
   body {
-    overflow-x: hidden;
     width: 100%;
   }
 
