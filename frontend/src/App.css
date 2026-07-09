@@ -2167,6 +2167,20 @@
     border-bottom: none;
   }
 
+  .catalog-filter-btn,
+  .catalog-subfilter-btn {
+    background-color: var(--bg-tertiary);
+    border-color: var(--bg-tertiary);
+    color: var(--text-primary);
+  }
+
+  .catalog-filter-btn.active,
+  .catalog-subfilter-btn.active {
+    background-color: var(--text-primary);
+    border-color: var(--text-primary);
+    color: var(--bg-primary);
+  }
+
   .hero-scroll-indicator {
     display: none !important;
   }
