@@ -575,8 +575,18 @@
 
 .catalog-filters {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
   list-style: none;
   gap: 12px;
+}
+
+.mobile-only .catalog-filters {
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  width: 100%;
+  overflow-x: auto;
+  white-space: nowrap;
 }
 
 .catalog-filters-sticky-container {

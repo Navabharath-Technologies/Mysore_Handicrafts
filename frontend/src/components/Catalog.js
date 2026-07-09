@@ -97,7 +97,7 @@ export default function Catalog({ products, onOpenDetail, pinnedIds, onTogglePin
   const filterButtonsContent = (
     <>
       {/* Sub Filters */}
-      <ul className="catalog-filters hide-scrollbar" style={{ margin: 0, width: '100%', overflowX: 'auto', paddingBottom: '8px', whiteSpace: 'nowrap' }}>
+      <ul className="catalog-filters hide-scrollbar" style={{ margin: 0, paddingBottom: '8px' }}>
         {categories.map(cat => (
           <li key={cat.key} style={{ flexShrink: 0 }}>
             <button
@@ -116,7 +116,7 @@ export default function Catalog({ products, onOpenDetail, pinnedIds, onTogglePin
 
       {/* Dynamic Subcategory Filters */}
       {uniqueSubcategories.length > 0 && (
-        <ul className="catalog-filters hide-scrollbar" style={{ margin: 0, gap: '6px', maxWidth: '100%', overflowX: 'auto', paddingBottom: '4px', whiteSpace: 'nowrap', marginTop: '6px' }}>
+        <ul className="catalog-filters hide-scrollbar" style={{ margin: 0, gap: '6px', paddingBottom: '4px', marginTop: '6px' }}>
           <li key="all-subs" style={{ flexShrink: 0 }}>
             <button
               className={`catalog-subfilter-btn ${activeSubFilter === 'all' ? 'active' : ''}`}
