@@ -175,7 +175,7 @@
   width: 100%;
   height: 100vh;
   overflow: hidden;
-  background-color: #E2DDD5;
+  background-color: #2a2522; /* Changed from #E2DDD5 so it shows a dark background while images load */
 }
 
 .hero-slide {
@@ -187,7 +187,7 @@
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transition: opacity 1.2s ease-in-out, visibility 1.2s ease-in-out;
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
   display: flex;
   align-items: center;
   overflow: hidden;
@@ -561,6 +561,14 @@
   margin-bottom: 40px;
 }
 
+.desktop-only {
+  display: block;
+}
+
+.mobile-only {
+  display: none !important;
+}
+
 .catalog-title-wrap {
   text-align: left;
 }
@@ -681,11 +689,23 @@
   }
 
   .catalog-header {
-    display: contents;
+    flex-direction: column;
+    align-items: stretch;
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 20px;
+  }
+  
+  .desktop-only {
+    display: none !important;
+  }
+
+  .mobile-only {
+    display: block !important;
   }
 
   .catalog-title-wrap {
-    margin-bottom: 12px;
+    margin-bottom: 0;
   }
 
   .catalog-filters {

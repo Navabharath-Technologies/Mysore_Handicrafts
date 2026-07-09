@@ -94,6 +94,53 @@ export default function Catalog({ products, onOpenDetail, pinnedIds, onTogglePin
     );
   }
 
+  const filterButtonsContent = (
+    <>
+      {/* Sub Filters */}
+      <ul className="catalog-filters hide-scrollbar" style={{ margin: 0, width: '100%', overflowX: 'auto', paddingBottom: '8px', whiteSpace: 'nowrap' }}>
+        {categories.map(cat => (
+          <li key={cat.key} style={{ flexShrink: 0 }}>
+            <button
+              className={`catalog-filter-btn ${activeFilter === cat.key ? 'active' : ''}`}
+              onClick={() => {
+                setActiveFilter(cat.key);
+                setActiveSubFilter('all');
+                setSearchQuery('');
+              }}
+            >
+              {cat.label}
+            </button>
+          </li>
+        ))}
+      </ul>
+
+      {/* Dynamic Subcategory Filters */}
+      {uniqueSubcategories.length > 0 && (
+        <ul className="catalog-filters hide-scrollbar" style={{ margin: 0, gap: '6px', maxWidth: '100%', overflowX: 'auto', paddingBottom: '4px', whiteSpace: 'nowrap', marginTop: '6px' }}>
+          <li key="all-subs" style={{ flexShrink: 0 }}>
+            <button
+              className={`catalog-subfilter-btn ${activeSubFilter === 'all' ? 'active' : ''}`}
+              onClick={() => setActiveSubFilter('all')}
+            >
+              All Types
+            </button>
+          </li>
+          {uniqueSubcategories.map(subcat => (
+            <li key={subcat} style={{ flexShrink: 0 }}>
+              <button
+                className={`catalog-subfilter-btn ${activeSubFilter === subcat ? 'active' : ''}`}
+                onClick={() => setActiveSubFilter(subcat)}
+                style={{ textTransform: 'capitalize' }}
+              >
+                {subcat}
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
+    </>
+  );
+
   return (
     <section className="catalog-section" id="catalog-section">
       <div className="section-headline" style={{ textAlign: 'left', margin: '0 0 8px 0', padding: '0', maxWidth: 'none', height: 'auto', minHeight: 'auto' }}>
@@ -134,50 +181,13 @@ export default function Catalog({ products, onOpenDetail, pinnedIds, onTogglePin
             )}
           </p>
         </div>
-        <div className={`catalog-filters-sticky-wrap ${isPastThreshold && scrollDirection === 'down' ? 'sticky-hidden' : ''}`}>
-          {/* Sub Filters */}
-          <ul className="catalog-filters hide-scrollbar" style={{ margin: 0, width: '100%', overflowX: 'auto', paddingBottom: '8px', whiteSpace: 'nowrap' }}>
-            {categories.map(cat => (
-              <li key={cat.key} style={{ flexShrink: 0 }}>
-                <button
-                  className={`catalog-filter-btn ${activeFilter === cat.key ? 'active' : ''}`}
-                  onClick={() => {
-                    setActiveFilter(cat.key);
-                    setActiveSubFilter('all');
-                    setSearchQuery('');
-                  }}
-                >
-                  {cat.label}
-                </button>
-              </li>
-            ))}
-          </ul>
-
-          {/* Dynamic Subcategory Filters */}
-          {uniqueSubcategories.length > 0 && (
-            <ul className="catalog-filters hide-scrollbar" style={{ margin: 0, gap: '6px', maxWidth: '100%', overflowX: 'auto', paddingBottom: '4px', whiteSpace: 'nowrap', marginTop: '6px' }}>
-              <li key="all-subs" style={{ flexShrink: 0 }}>
-                <button
-                  className={`catalog-subfilter-btn ${activeSubFilter === 'all' ? 'active' : ''}`}
-                  onClick={() => setActiveSubFilter('all')}
-                >
-                  All Types
-                </button>
-              </li>
-              {uniqueSubcategories.map(subcat => (
-                <li key={subcat} style={{ flexShrink: 0 }}>
-                  <button
-                    className={`catalog-subfilter-btn ${activeSubFilter === subcat ? 'active' : ''}`}
-                    onClick={() => setActiveSubFilter(subcat)}
-                    style={{ textTransform: 'capitalize' }}
-                  >
-                    {subcat}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          )}
+        <div className="catalog-filters-desktop-wrap desktop-only">
+          {filterButtonsContent}
         </div>
+      </div>
+
+      <div className={`catalog-filters-sticky-wrap mobile-only ${isPastThreshold && scrollDirection === 'down' ? 'sticky-hidden' : ''}`}>
+        {filterButtonsContent}
       </div>
 
       {/* Category Description */}
