@@ -237,6 +237,8 @@ Please let me know more details about its availability and shipping.`;
               src={lightboxImgSrc}
               alt={product.name}
               className="lightbox-img"
+              showBlurredBackground={true}
+              wrapClassName="lightbox-wrap"
             />
           </div>
         </div>
