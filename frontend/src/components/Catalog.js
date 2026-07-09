@@ -143,7 +143,7 @@ export default function Catalog({ products, onOpenDetail, pinnedIds, onTogglePin
 
   return (
     <section className="catalog-section" id="catalog-section">
-      <div className="catalog-top-sticky-container">
+      <div className={`catalog-top-sticky-container ${isPastThreshold && scrollDirection === 'down' ? 'sticky-hidden' : ''}`}>
         <div className="section-headline" style={{ textAlign: 'left', margin: '0 0 8px 0', padding: '0', maxWidth: 'none', height: 'auto', minHeight: 'auto' }}>
           <h2 className="headline-main" style={{ textAlign: 'left' }}>Our Collection</h2>
         </div>

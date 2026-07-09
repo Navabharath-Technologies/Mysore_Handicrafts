@@ -2153,6 +2153,11 @@
     padding: 20px 20px 12px 20px; /* Top padding to look good when scrolled */
     margin: -10px -20px 24px -20px; /* Stretch out of parent padding */
     border-bottom: 1px solid var(--glass-border);
+    transition: transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+  }
+
+  .catalog-top-sticky-container.sticky-hidden {
+    transform: translateY(-200%);
   }
 
   .catalog-filters-sticky-wrap {
