@@ -143,51 +143,53 @@ export default function Catalog({ products, onOpenDetail, pinnedIds, onTogglePin
 
   return (
     <section className="catalog-section" id="catalog-section">
-      <div className="section-headline" style={{ textAlign: 'left', margin: '0 0 8px 0', padding: '0', maxWidth: 'none', height: 'auto', minHeight: 'auto' }}>
-        <h2 className="headline-main" style={{ textAlign: 'left' }}>Our Collection</h2>
-      </div>
-
-      <div className="catalog-header">
-        <div className="catalog-title-wrap">
-          <p style={{ fontSize: '14px', color: 'var(--text-secondary)' }}>
-            {searchQuery ? (
-              <span>
-                Found {filtered.length} result{filtered.length !== 1 ? 's' : ''} for "<strong>{searchQuery}</strong>"
-                <button
-                  onClick={() => setSearchQuery('')}
-                  style={{ marginLeft: '12px', textDecoration: 'underline', color: 'var(--accent-clay)', fontWeight: '600', cursor: 'pointer', border: 'none', background: 'none', padding: 0 }}
-                >
-                  Clear Search
-                </button>
-              </span>
-            ) : activeSubFilter !== 'all' ? (
-              <span>
-                Showing {filtered.length} piece{filtered.length !== 1 ? 's' : ''} of type <strong>{
-                  activeSubFilter === 'statues' ? 'Statues & Idols' :
-                    activeSubFilter === 'carvings' ? 'Wood Carvings' :
-                      activeSubFilter === 'decor' ? 'Home & Wooden Wall Decor' :
-                        activeSubFilter === 'boxes' ? 'Boxes & Chests' :
-                          activeSubFilter === 'utility' ? 'Utility & Accent Items' : activeSubFilter
-                }</strong>
-                <button
-                  onClick={() => setActiveSubFilter('all')}
-                  style={{ marginLeft: '12px', textDecoration: 'underline', color: 'var(--accent-clay)', fontWeight: '600', cursor: 'pointer', border: 'none', background: 'none', padding: 0 }}
-                >
-                  Clear Filter
-                </button>
-              </span>
-            ) : (
-              `Showing ${filtered.length} of ${baseCategoryProducts.length} artifacts`
-            )}
-          </p>
+      <div className="catalog-top-sticky-container">
+        <div className="section-headline" style={{ textAlign: 'left', margin: '0 0 8px 0', padding: '0', maxWidth: 'none', height: 'auto', minHeight: 'auto' }}>
+          <h2 className="headline-main" style={{ textAlign: 'left' }}>Our Collection</h2>
         </div>
-        <div className="catalog-filters-desktop-wrap desktop-only">
+
+        <div className="catalog-header">
+          <div className="catalog-title-wrap">
+            <p style={{ fontSize: '14px', color: 'var(--text-secondary)' }}>
+              {searchQuery ? (
+                <span>
+                  Found {filtered.length} result{filtered.length !== 1 ? 's' : ''} for "<strong>{searchQuery}</strong>"
+                  <button
+                    onClick={() => setSearchQuery('')}
+                    style={{ marginLeft: '12px', textDecoration: 'underline', color: 'var(--accent-clay)', fontWeight: '600', cursor: 'pointer', border: 'none', background: 'none', padding: 0 }}
+                  >
+                    Clear Search
+                  </button>
+                </span>
+              ) : activeSubFilter !== 'all' ? (
+                <span>
+                  Showing {filtered.length} piece{filtered.length !== 1 ? 's' : ''} of type <strong>{
+                    activeSubFilter === 'statues' ? 'Statues & Idols' :
+                      activeSubFilter === 'carvings' ? 'Wood Carvings' :
+                        activeSubFilter === 'decor' ? 'Home & Wooden Wall Decor' :
+                          activeSubFilter === 'boxes' ? 'Boxes & Chests' :
+                            activeSubFilter === 'utility' ? 'Utility & Accent Items' : activeSubFilter
+                  }</strong>
+                  <button
+                    onClick={() => setActiveSubFilter('all')}
+                    style={{ marginLeft: '12px', textDecoration: 'underline', color: 'var(--accent-clay)', fontWeight: '600', cursor: 'pointer', border: 'none', background: 'none', padding: 0 }}
+                  >
+                    Clear Filter
+                  </button>
+                </span>
+              ) : (
+                `Showing ${filtered.length} of ${baseCategoryProducts.length} artifacts`
+              )}
+            </p>
+          </div>
+          <div className="catalog-filters-desktop-wrap desktop-only">
+            {filterButtonsContent}
+          </div>
+        </div>
+
+        <div className="catalog-filters-sticky-wrap mobile-only">
           {filterButtonsContent}
         </div>
-      </div>
-
-      <div className={`catalog-filters-sticky-wrap mobile-only ${isPastThreshold && scrollDirection === 'down' ? 'sticky-hidden' : ''}`}>
-        {filterButtonsContent}
       </div>
 
       {/* Category Description */}

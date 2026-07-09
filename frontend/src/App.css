@@ -2146,19 +2146,21 @@
     border: 1px solid var(--accent-brass);
   }
 
-  .catalog-filters-sticky-wrap {
+  .catalog-top-sticky-container {
     position: sticky;
     top: 69px; /* Just below the mobile navbar */
     z-index: 45;
     background-color: var(--bg-primary);
-    padding: 12px 20px;
-    margin: 0 -20px 24px -20px; /* Stretch out of parent padding & replace catalog-header margin */
+    padding: 20px 20px 12px 20px; /* Top padding to look good when scrolled */
+    margin: -10px -20px 24px -20px; /* Stretch out of parent padding */
     border-bottom: 1px solid var(--glass-border);
-    transition: transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
   }
-  
-  .catalog-filters-sticky-wrap.sticky-hidden {
-    transform: translateY(-200%);
+
+  .catalog-filters-sticky-wrap {
+    background-color: transparent;
+    padding: 0;
+    margin: 0;
+    border-bottom: none;
   }
 
   .hero-scroll-indicator {
