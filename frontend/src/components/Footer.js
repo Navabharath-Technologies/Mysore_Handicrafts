@@ -90,17 +90,6 @@ export default function Footer({ setActiveTab, onAdminTrigger }) {
           </ul>
         </div>
 
-        {/* Newsletter Column */}
-        <div className="footer-newsletter-section">
-          <p className="footer-title">Stay Inspired</p>
-          <p className="footer-newsletter-text">
-            Receive curated design stories, new collection launches, and behind-the-scenes craftsmanship narratives.
-          </p>
-          <div className="footer-input-row">
-            <input type="email" placeholder="your@email.com" className="footer-input" />
-            <button className="footer-input-btn">Subscribe →</button>
-          </div>
-        </div>
       </div>
 
       {/* Footer Bottom */}
