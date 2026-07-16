@@ -1,27 +1,27 @@
 {
   "files": {
-    "main.css": "/Mysore_Handicrafts/static/css/main.0404199e.css",
-    "main.js": "/Mysore_Handicrafts/static/js/main.45fca0d7.js",
-    "static/media/about-story-sandalwood.webp": "/Mysore_Handicrafts/static/media/about-story-sandalwood.57d87454e74c26e009ef.webp",
-    "static/media/cat_wood_carvings.webp": "/Mysore_Handicrafts/static/media/cat_wood_carvings.e2ce934a73d59debee73.webp",
-    "static/media/cat_wall_decor.webp": "/Mysore_Handicrafts/static/media/cat_wall_decor.301052ca1fb2d88a1861.webp",
-    "static/media/wall_decor_hero.webp": "/Mysore_Handicrafts/static/media/wall_decor_hero.301052ca1fb2d88a1861.webp",
-    "static/media/wood_carvings_hero.webp": "/Mysore_Handicrafts/static/media/wood_carvings_hero.b6b5225da381cd4f00ca.webp",
-    "static/media/contact-hero.webp": "/Mysore_Handicrafts/static/media/contact-hero.6cfd9097e3c340b68254.webp",
-    "static/media/elephants_hero.webp": "/Mysore_Handicrafts/static/media/elephants_hero.284fd59af5fedd026542.webp",
-    "static/media/home-cta.webp": "/Mysore_Handicrafts/static/media/home-cta.1f03b6960a76c0effd56.webp",
-    "static/media/cat_teakwood_new.webp": "/Mysore_Handicrafts/static/media/cat_teakwood_new.eb5a34334c50a0473f19.webp",
-    "static/media/royal_heritage_banner_new2.webp": "/Mysore_Handicrafts/static/media/royal_heritage_banner_new2.17611bd99158c4074b3a.webp",
-    "static/media/cat_sandalwood_new2.webp": "/Mysore_Handicrafts/static/media/cat_sandalwood_new2.15ecd220a91be37ba23a.webp",
-    "static/media/teakwood_hero.webp": "/Mysore_Handicrafts/static/media/teakwood_hero.fe5af063042eb8f7d100.webp",
-    "static/media/sandalwood_hero.webp": "/Mysore_Handicrafts/static/media/sandalwood_hero.faf618a2c994390870d9.webp",
-    "static/media/paper-texture.webp": "/Mysore_Handicrafts/static/media/paper-texture.5de749245a93d8f69d6a.webp",
-    "index.html": "/Mysore_Handicrafts/index.html",
-    "main.0404199e.css.map": "/Mysore_Handicrafts/static/css/main.0404199e.css.map",
-    "main.45fca0d7.js.map": "/Mysore_Handicrafts/static/js/main.45fca0d7.js.map"
+    "main.css": "/static/css/main.8319aec0.css",
+    "main.js": "/static/js/main.d939156d.js",
+    "static/media/about-story-sandalwood.webp": "/static/media/about-story-sandalwood.57d87454e74c26e009ef.webp",
+    "static/media/cat_wood_carvings.webp": "/static/media/cat_wood_carvings.e2ce934a73d59debee73.webp",
+    "static/media/cat_wall_decor.webp": "/static/media/cat_wall_decor.301052ca1fb2d88a1861.webp",
+    "static/media/wall_decor_hero.webp": "/static/media/wall_decor_hero.301052ca1fb2d88a1861.webp",
+    "static/media/wood_carvings_hero.webp": "/static/media/wood_carvings_hero.b6b5225da381cd4f00ca.webp",
+    "static/media/contact-hero.webp": "/static/media/contact-hero.6cfd9097e3c340b68254.webp",
+    "static/media/elephants_hero.webp": "/static/media/elephants_hero.284fd59af5fedd026542.webp",
+    "static/media/home-cta.webp": "/static/media/home-cta.1f03b6960a76c0effd56.webp",
+    "static/media/cat_teakwood_new.webp": "/static/media/cat_teakwood_new.eb5a34334c50a0473f19.webp",
+    "static/media/royal_heritage_banner_new2.webp": "/static/media/royal_heritage_banner_new2.17611bd99158c4074b3a.webp",
+    "static/media/cat_sandalwood_new2.webp": "/static/media/cat_sandalwood_new2.15ecd220a91be37ba23a.webp",
+    "static/media/teakwood_hero.webp": "/static/media/teakwood_hero.fe5af063042eb8f7d100.webp",
+    "static/media/sandalwood_hero.webp": "/static/media/sandalwood_hero.faf618a2c994390870d9.webp",
+    "static/media/paper-texture.webp": "/static/media/paper-texture.5de749245a93d8f69d6a.webp",
+    "index.html": "/index.html",
+    "main.8319aec0.css.map": "/static/css/main.8319aec0.css.map",
+    "main.d939156d.js.map": "/static/js/main.d939156d.js.map"
   },
   "entrypoints": [
-    "static/css/main.0404199e.css",
-    "static/js/main.45fca0d7.js"
+    "static/css/main.8319aec0.css",
+    "static/js/main.d939156d.js"
   ]
 }
