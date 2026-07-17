@@ -185,7 +185,8 @@ function App() {
               {products.filter(p => p.featured).map((product, idx) => (
                 <Reveal 
                   key={product.id} 
-                  delay={50 + (idx * 50)}
+                  delay={idx * 30}
+                  animationClass="reveal-flip"
                   className="featured-product-card"
                   onClick={() => handleOpenDetail(product)}
                 >
@@ -193,7 +194,8 @@ function App() {
                     src={product.images.room}
                     alt={product.name}
                     className="featured-product-card-img"
-                    loading="lazy"
+                    loading="eager"
+                    fetchPriority={idx < 2 ? "high" : "auto"}
                   />
                   <div className="featured-product-card-overlay">
                     <span className="featured-product-card-cat">

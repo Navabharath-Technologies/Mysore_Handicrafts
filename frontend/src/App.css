@@ -160,14 +160,26 @@
 /* Global reveal element */
 .reveal-element {
   opacity: 0;
-  transform: translateY(80px);
-  transition: opacity 0.5s cubic-bezier(0.25, 0.8, 0.25, 1), transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transform: scale(0.98);
+  transition: opacity 0.4s ease-out, transform 0.4s ease-out;
   will-change: opacity, transform;
 }
 
 .reveal-element.is-visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: scale(1);
+}
+
+.reveal-flip {
+  opacity: 0;
+  transform: perspective(1000px) rotateX(15deg) translateY(40px);
+  transition: opacity 0.35s ease-out, transform 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-flip.is-visible {
+  opacity: 1;
+  transform: perspective(1000px) rotateX(0deg) translateY(0);
 }
 
 .hero-wrapper {
@@ -1677,6 +1689,7 @@
   border-radius: 8px;
   cursor: pointer;
   aspect-ratio: 3 / 4;
+  background-color: #2a2522; /* Dark placeholder while lazy-loading image */
 }
 
 .featured-product-card-img {
@@ -1733,13 +1746,14 @@
   overflow: hidden;
   margin: 60px 0;
   background-position: center 51% !important;
+  background-color: #2a2522; /* Dark placeholder while image loads */
 }
 
 .parallax-bg {
-  background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  /* Removed background-attachment: fixed; as it causes blanking during smooth scrolls */
 }
 
 @media (max-width: 768px) {
@@ -1881,6 +1895,7 @@
   height: 65vh;
   overflow: hidden;
   margin: 60px 0;
+  background-color: #2a2522; /* Dark placeholder while image loads */
 }
 
 .second-banner-img {
@@ -2075,7 +2090,7 @@
     min-height: auto !important;
     margin-top: 35px !important; /* Reduced from 45px for a tiny final shift upward */
     padding-top: 0 !important;
-    background-color: var(--bg-primary) !important;
+    background-color: #2a2522 !important; /* Force dark background even on mobile */
   }
 
   .hero-slide {
@@ -2239,7 +2254,7 @@
   .reveal-element {
     transition: opacity 0.25s ease-out, transform 0.25s ease-out !important;
     transition-delay: 0s !important;
-    transform: translateY(30px);
+    transform: scale(0.98);
   }
 
   .section-headline {
@@ -3340,6 +3355,8 @@ body.mobile-menu-active .App {
 .contact-whatsapp-btn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
+  text-align: center;
   padding: 12px 24px;
   background: var(--accent-sage);
   color: #fff;
@@ -3359,6 +3376,30 @@ body.mobile-menu-active .App {
   background: var(--accent-brass);
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(143, 151, 121, 0.25);
+}
+
+/* Contact Hours Row */
+.contact-hours-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+}
+
+.contact-hours-row-bordered {
+  border-bottom: 1px solid rgba(37,40,39,0.06);
+  padding-bottom: 6px;
+  margin-bottom: 6px;
+}
+
+@media (max-width: 600px) {
+  .contact-hours-row {
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 12px;
+  }
+  .contact-hours-row-bordered {
+    padding-bottom: 12px;
+  }
 }
 
 /* Details Grid */

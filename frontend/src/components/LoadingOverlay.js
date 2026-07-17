@@ -14,9 +14,18 @@ const LoadingOverlay = ({ onFinish }) => {
       handleFinish();
     }, 20000);
 
+    // Trick 1: Instantly finish loading if user switches tabs
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'hidden') {
+        handleFinish();
+      }
+    };
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
     return () => {
       if (fallbackTimeoutRef.current) clearTimeout(fallbackTimeoutRef.current);
       document.body.style.overflow = ''; // Restore scrolling
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
     };
   }, []);
 
@@ -24,27 +33,33 @@ const LoadingOverlay = ({ onFinish }) => {
     if (stage === 'fading') return;
     setStage('fading');
     if (fallbackTimeoutRef.current) clearTimeout(fallbackTimeoutRef.current);
-    
+
     setTimeout(() => {
       if (onFinish) onFinish();
     }, 800);
   };
 
+  const handleTimeUpdate = (e) => {
+    const video = e.target;
+    // Cut off the last 1.5 seconds of the original video duration to skip the pause
+    if (video.duration && video.currentTime >= video.duration - 1.5) {
+      handleFinish();
+    }
+  };
+
   return (
     <div className={`loading-overlay ${stage === 'fading' ? 'lo-fade-out' : ''}`}>
-      <div className="lo-inner-content" style={{ width: '100%', height: '100%', padding: 0 }}>
-        
-        <div className="loading-video-container" style={{ width: '100vw', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-          <video 
-            src={`${process.env.PUBLIC_URL}/videos/loading-screen.mp4`} 
-            autoPlay 
-            muted 
-            playsInline 
-            onEnded={handleFinish}
-            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-          />
-        </div>
-        
+      <div className="loading-screen-container">
+        <video
+          className="loading-video"
+          src={`${process.env.PUBLIC_URL}/videos/loading-screen.mp4#t=4`}
+          autoPlay
+          muted
+          playsInline
+          onEnded={handleFinish}
+          onTimeUpdate={handleTimeUpdate}
+          onPlay={(e) => { e.target.playbackRate = 1.5; }}
+        />
       </div>
     </div>
   );

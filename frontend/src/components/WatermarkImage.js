@@ -23,9 +23,9 @@ const WatermarkImage = ({ src, alt, className, style, onClick, wrapClassName, sh
   return (
     <div className={`wm-wrap ${wrapClassName || ''}`} style={style} onClick={onClick}>
       {showBlurredBackground && (
-        <img src={finalSrc} alt="" className="wm-blurred-bg" aria-hidden="true" />
+        <img src={finalSrc} alt="" className="wm-blurred-bg" aria-hidden="true" decoding="async" />
       )}
-      <img src={finalSrc} alt={alt} className={`wm-img ${className || ''} ${showBlurredBackground ? 'with-blur' : 'cover-img'}`} style={imgStyle} {...props} />
+      <img src={finalSrc} alt={alt} className={`wm-img ${className || ''} ${showBlurredBackground ? 'with-blur' : 'cover-img'}`} style={imgStyle} decoding="async" {...props} />
       <span className="wm-text" aria-hidden="true">@mysorehandicrafts</span>
     </div>
   );

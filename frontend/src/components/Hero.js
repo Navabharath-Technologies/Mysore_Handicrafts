@@ -95,7 +95,12 @@ export default function Hero({ setActiveTab }) {
     >
       {heroSlides.map((slide, idx) => (
         <div key={slide.id} className={`hero-slide ${idx === current ? 'active' : ''}`}>
-          <img src={slide.image} alt={slide.title} className={`hero-image hero-image-${slide.id}`} />
+          <img 
+            src={slide.image} 
+            alt={slide.title} 
+            className={`hero-image hero-image-${slide.id}`} 
+            loading={idx === 0 ? "eager" : "lazy"}
+          />
           <div className="hero-image-overlay" />
           <div className="hero-content">
             <p className="hero-subtitle">{slide.subtitle}</p>

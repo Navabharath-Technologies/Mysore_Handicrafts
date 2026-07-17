@@ -5,7 +5,7 @@ import { getBaseTermForSynonym } from '../utils/synonyms';
 
 const categories = [
   { key: 'all', label: 'All Artifacts', desc: "Explore our full archive of meticulously handcrafted masterpieces. From sacred Chandana and dense Rosewood to perfect Shivani Teakwood substitutes and unique natural colour wood wall hangings, our collection preserves centuries of royal Mysore heritage and generational artistry." },
-  { key: 'sandalwood', label: 'Sandalwood', desc: "Known as Chandana, this highly priced wood has a pleasant fragrance and good oil content with great medicinal value. Termed \"ROYAL\" and considered Sacred by different societies, it is used to make figurines or artwork by artists who attain their skills by the generations." },
+  { key: 'sandalwood', label: 'Sandalwood', desc: "Known as Chandana, this highly priced wood has a pleasant fragrance and good oil content with great medicinal value. Termed \"ROYAL\" and considered Sacred by different societies, it is used to make figurines, artefacts, religious Pooja items used by different communities and other artwork by artists who attain their skills by the generations." },
   { key: 'rosewood', label: 'Rosewood', desc: "A characteristically dark and highly grained wood ranging in color from rich red to dark brown. Priced historically for its close, dense grain which makes it extremely strong and durable, it is famous in Mysore for intricate Inlay work assembled like a puzzle since the time of the Maharajas." },
   { key: 'shivani-teakwood', label: 'Shivani Teakwood', desc: "As Sandalwood is not got in abundance, artifacts are made in Shivani Wood. The color of the wood is slightly close to sandalwood thus making it a perfect substitute. It is used to craft timeless, premium wooden idols and decorative artifacts with a robust and beautiful finish." },
   { key: 'wooden-wall-decor', label: 'Wooden Wall Decor', desc: "This is an art form in which we use different Natural Colour wood individually cut to desired shapes and assembled to form a subject. There is no touch of colour as we take only the natural colour wood dependent on Mother Nature. This is a unique art form done only in Mysore and no other place in the world." },
@@ -25,31 +25,37 @@ export default function Catalog({ products, onOpenDetail, pinnedIds, onTogglePin
 
   const [scrollDirection, setScrollDirection] = useState('up');
   const [isPastThreshold, setIsPastThreshold] = useState(false);
+  const [displayCount, setDisplayCount] = useState(16);
+
+  // Reset display count when filters change
+  useEffect(() => {
+    setDisplayCount(16);
+  }, [activeFilter, activeSubFilter, searchQuery]);
 
   useEffect(() => {
     let lastScrollY = window.pageYOffset;
-    
+
     const handleScroll = () => {
       const scrollY = window.pageYOffset;
       const direction = scrollY > lastScrollY ? 'down' : 'up';
-      
+
       // Determine if we scrolled past the top of the catalog section
       const catalogEl = document.getElementById('catalog-section');
       if (catalogEl) {
-         if (scrollY > catalogEl.offsetTop + 100) {
-            setIsPastThreshold(true);
-         } else {
-            setIsPastThreshold(false);
-         }
+        if (scrollY > catalogEl.offsetTop + 100) {
+          setIsPastThreshold(true);
+        } else {
+          setIsPastThreshold(false);
+        }
       }
 
       if (direction !== scrollDirection && (scrollY - lastScrollY > 10 || scrollY - lastScrollY < -10)) {
         setScrollDirection(direction);
       }
-      
+
       lastScrollY = scrollY > 0 ? scrollY : 0;
     };
-    
+
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, [scrollDirection]);
@@ -216,71 +222,85 @@ export default function Catalog({ products, onOpenDetail, pinnedIds, onTogglePin
           </button>
         </div>
       ) : (
-        <div className="dense-grid" key={`${activeFilter}-${activeSubFilter}-${searchQuery}`}>
-          {filtered.map((product, idx) => {
-            return (
-              <Reveal
-                className="product-card"
-                key={product.id}
-                delay={(idx % 4) * 100}
-              >
-                <div
-                  className="product-card-img-wrap"
-                  onClick={() => onOpenDetail(product)}
-                  style={{ cursor: 'pointer' }}
+        <>
+          <div className="dense-grid" key={`${activeFilter}-${activeSubFilter}-${searchQuery}`}>
+            {filtered.slice(0, displayCount).map((product, idx) => {
+              return (
+                <Reveal
+                  className="product-card"
+                  key={product.id}
+                  delay={(idx % 4) * 100}
                 >
-                  <WatermarkImage
-                    src={product.images.front}
-                    alt={product.name}
-                    className="product-card-img main-view"
-                    wrapClassName="main-view-wrap"
-                    loading="lazy"
-                  />
-                  <WatermarkImage
-                    src={Object.values(product.images).find(url => url && url !== product.images.front) || product.images.front}
-                    alt={`${product.name} detail`}
-                    className="product-card-img detail-view"
-                    wrapClassName="detail-view-wrap"
-                    loading="lazy"
-                  />
-                  <button
-                    className="product-card-pin-btn glass-panel whatsapp-card-btn"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      const number = "919845106280";
-                      const message = `Hello Mysore Handicrafts,
-
-I would like to enquire about:
-*Product Name:* ${product.name}
-*Category:* ${product.category}
-*Price:* ${product.price}
-
-Please let me know more details about its availability and shipping.`;
-                      const waUrl = `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
-                      window.open(waUrl, '_blank');
-                    }}
-                    title="Enquire on WhatsApp"
+                  <div
+                    className="product-card-img-wrap"
+                    onClick={() => onOpenDetail(product)}
+                    style={{ cursor: 'pointer' }}
                   >
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
-                    </svg>
-                  </button>
-                </div>
-                <div className="product-card-info">
-                  <span className="product-card-sub">{product.category}</span>
-                  <h3 className="product-card-title" onClick={() => onOpenDetail(product)}>
-                    {product.name}
-                  </h3>
-                  <div className="product-card-meta">
-                    <span className="product-card-materials">
-                      {product.materials.slice(0, 2).join(' · ')}
-                    </span>
+                    <WatermarkImage
+                      src={product.images.front}
+                      alt={product.name}
+                      className="product-card-img main-view"
+                      wrapClassName="main-view-wrap"
+                      loading="lazy"
+                    />
+                    <WatermarkImage
+                      src={Object.values(product.images).find(url => url && url !== product.images.front) || product.images.front}
+                      alt={`${product.name} detail`}
+                      className="product-card-img detail-view"
+                      wrapClassName="detail-view-wrap"
+                      loading="lazy"
+                    />
+                    <button
+                      className="product-card-pin-btn glass-panel whatsapp-card-btn"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        const number = "919845106280";
+                        const message = `Hello Mysore Handicrafts,
+  
+  I would like to enquire about:
+  *Product Name:* ${product.name}
+  *Category:* ${product.category}
+  *Price:* ${product.price}
+  
+  Please let me know more details about its availability and shipping.`;
+                        const waUrl = `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
+                        window.open(waUrl, '_blank');
+                      }}
+                      title="Enquire on WhatsApp"
+                    >
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+                      </svg>
+                    </button>
                   </div>
-                </div>
-              </Reveal>
-            );
-          })}
-        </div>
+                  <div className="product-card-info">
+                    <span className="product-card-sub">{product.category}</span>
+                    <h3 className="product-card-title" onClick={() => onOpenDetail(product)}>
+                      {product.name}
+                    </h3>
+                    <div className="product-card-meta">
+                      <span className="product-card-materials">
+                        {product.materials.slice(0, 2).join(' · ')}
+                      </span>
+                    </div>
+                  </div>
+                </Reveal>
+              );
+            })}
+          </div>
+          
+          {displayCount < filtered.length && (
+            <div style={{ textAlign: 'center', marginTop: '60px' }}>
+              <button 
+                className="btn-luxury"
+                onClick={() => setDisplayCount(prev => prev + 16)}
+                style={{ padding: '16px 40px', fontSize: '13px', cursor: 'pointer' }}
+              >
+                Load More Artifacts
+              </button>
+            </div>
+          )}
+        </>
       )}
     </section>
   );

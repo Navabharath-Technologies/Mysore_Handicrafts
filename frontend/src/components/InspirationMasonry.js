@@ -34,12 +34,18 @@ export default function InspirationMasonry({ products, onOpenDetail }) {
 
     const advanceScroll = () => {
       if (isHovering || isManualInteraction) return;
-      // Scroll by one item width (approx 500px width + 80px gap)
-      // We use 580 to reliably trigger the snap to the next item
+      
+      const itemNode = container.querySelector('.museum-item');
+      if (!itemNode) return;
+      
+      const itemStyle = window.getComputedStyle(itemNode);
+      const gap = parseInt(window.getComputedStyle(container).gap) || 40;
+      const scrollAmount = itemNode.offsetWidth + gap;
+
       if (container.scrollLeft + container.clientWidth >= container.scrollWidth - 10) {
         container.scrollTo({ left: 0, behavior: 'smooth' });
       } else {
-        container.scrollBy({ left: 580, behavior: 'smooth' });
+        container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
       }
     };
 

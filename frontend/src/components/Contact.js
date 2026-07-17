@@ -158,11 +158,11 @@ ${formData.message}`;
                   <div style={{ width: '100%' }}>
                     <h4>Business Hours</h4>
                     <div className="contact-hours-list" style={{ marginTop: '6px' }}>
-                      <div className="contact-hours-row" style={{ display: 'flex', justifyContent: 'space-between', fontSize: '13px', borderBottom: '1px solid rgba(37,40,39,0.06)', paddingBottom: '6px', marginBottom: '6px' }}>
+                      <div className="contact-hours-row contact-hours-row-bordered">
                         <span>Monday – Saturday</span>
                         <strong>10:00 AM – 8:00 PM</strong>
                       </div>
-                      <div className="contact-hours-row" style={{ display: 'flex', justifyContent: 'space-between', fontSize: '13px' }}>
+                      <div className="contact-hours-row">
                         <span>Sunday</span>
                         <strong>10:00 AM – 12:00 PM</strong>
                       </div>
