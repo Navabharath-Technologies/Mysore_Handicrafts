@@ -107,7 +107,7 @@ ${formData.message}`;
                     Please connect with us via WhatsApp for pricing details, custom requests, and to arrange your purchase.
                   </p>
                   <a
-                    href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hi%20Mysore%20Handicrafts%2C%20I'd%20like%20to%20enquire%20about%20your%20handicrafts.`}
+                    href={`https://wa.me/${WHATSAPP_NUMBER}?text=Namaste%20Mysore%20Handicrafts%2C%20I'd%20like%20to%20enquire%20about%20your%20handicrafts.`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="contact-whatsapp-btn"
