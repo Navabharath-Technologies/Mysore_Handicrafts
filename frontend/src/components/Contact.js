@@ -47,7 +47,7 @@ export default function Contact() {
     }
 
     // Format the WhatsApp message with form values
-    const text = `Hello Mysore Handicrafts,
+    const text = `Namaste Mysore Handicrafts,
 
 I have an enquiry from your website:
 *Name:* ${formData.name}

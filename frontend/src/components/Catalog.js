@@ -255,14 +255,13 @@ export default function Catalog({ products, onOpenDetail, pinnedIds, onTogglePin
                       onClick={(e) => {
                         e.stopPropagation();
                         const number = "919845106280";
-                        const message = `Hello Mysore Handicrafts,
+                        const message = `Namaste Mysore Handicrafts,
   
   I would like to enquire about:
   *Product Name:* ${product.name}
   *Category:* ${product.category}
-  *Price:* ${product.price}
   
-  Please let me know more details about its availability and shipping.`;
+  Please let me know more details about its availability.`;
                         const waUrl = `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
                         window.open(waUrl, '_blank');
                       }}

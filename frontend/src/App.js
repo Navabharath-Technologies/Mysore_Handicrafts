@@ -36,22 +36,70 @@ function App() {
   const [catalogSubcategory, setCatalogSubcategory] = useState('all');
   const [isTransitioning, setIsTransitioning] = useState(false);
 
-  // Force scroll to top on refresh
+  // Force scroll to top on refresh and set initial history state
   React.useEffect(() => {
     if ('scrollRestoration' in window.history) {
       window.history.scrollRestoration = 'manual';
     }
     window.scrollTo(0, 0);
+    window.history.replaceState({ tab: 'home', category: 'all', subcategory: 'all', search: '' }, '', '');
+  }, []);
+
+  // Track current state in a ref for the popstate listener
+  const stateRef = React.useRef({ activeTab, isDrawerOpen, catalogFilter, catalogSubcategory, catalogSearch });
+  React.useEffect(() => {
+    stateRef.current = { activeTab, isDrawerOpen, catalogFilter, catalogSubcategory, catalogSearch };
+  }, [activeTab, isDrawerOpen, catalogFilter, catalogSubcategory, catalogSearch]);
+
+  // Handle browser back button
+  React.useEffect(() => {
+    const handlePopState = (event) => {
+      const currentState = stateRef.current;
+      
+      // If drawer is open, close it
+      if (currentState.isDrawerOpen) {
+        setIsDrawerOpen(false);
+        setTimeout(() => setDrawerProduct(null), 500);
+      }
+      
+      if (event.state) {
+        const { tab, category, subcategory, search } = event.state;
+        
+        // If the state popped matches our current tab state, we don't need to transition 
+        // (this happens when popping the drawer state)
+        if (tab === currentState.activeTab && category === currentState.catalogFilter && subcategory === currentState.catalogSubcategory && search === currentState.catalogSearch) {
+           return;
+        }
+
+        setIsTransitioning(true);
+        setTimeout(() => {
+          setActiveTab(tab || 'home');
+          setCatalogFilter(category || 'all');
+          setCatalogSubcategory(subcategory || 'all');
+          setCatalogSearch(search || '');
+          scrollToTop();
+          setIsTransitioning(false);
+        }, 300);
+      }
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
   }, []);
 
   const handleOpenDetail = (product) => {
+    window.history.pushState({ tab: activeTab, category: catalogFilter, subcategory: catalogSubcategory, search: catalogSearch, drawerOpen: true }, '', '');
     setDrawerProduct(product);
     setIsDrawerOpen(true);
   };
 
   const handleCloseDetail = () => {
-    setIsDrawerOpen(false);
-    setTimeout(() => setDrawerProduct(null), 500);
+    if (window.history.state && window.history.state.drawerOpen) {
+      window.history.back(); // This triggers popstate, which closes the drawer
+    } else {
+      setIsDrawerOpen(false);
+      setTimeout(() => setDrawerProduct(null), 500);
+    }
   };
 
   const handleTogglePin = (productId) => {
@@ -68,6 +116,9 @@ function App() {
 
   const switchTab = (tab, category = 'all', subcategory = 'all', search = '') => {
     if (tab === activeTab && category === catalogFilter && subcategory === catalogSubcategory && search === catalogSearch) return;
+    
+    window.history.pushState({ tab, category, subcategory, search }, '', '');
+    
     setIsTransitioning(true);
     setTimeout(() => {
       setActiveTab(tab);
