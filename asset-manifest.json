@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.8319aec0.css",
-    "main.js": "/static/js/main.d939156d.js",
+    "main.css": "/static/css/main.781d79e4.css",
+    "main.js": "/static/js/main.d6e00eba.js",
     "static/media/about-story-sandalwood.webp": "/static/media/about-story-sandalwood.57d87454e74c26e009ef.webp",
     "static/media/cat_wood_carvings.webp": "/static/media/cat_wood_carvings.e2ce934a73d59debee73.webp",
     "static/media/cat_wall_decor.webp": "/static/media/cat_wall_decor.301052ca1fb2d88a1861.webp",
@@ -17,11 +17,11 @@
     "static/media/sandalwood_hero.webp": "/static/media/sandalwood_hero.faf618a2c994390870d9.webp",
     "static/media/paper-texture.webp": "/static/media/paper-texture.5de749245a93d8f69d6a.webp",
     "index.html": "/index.html",
-    "main.8319aec0.css.map": "/static/css/main.8319aec0.css.map",
-    "main.d939156d.js.map": "/static/js/main.d939156d.js.map"
+    "main.781d79e4.css.map": "/static/css/main.781d79e4.css.map",
+    "main.d6e00eba.js.map": "/static/js/main.d6e00eba.js.map"
   },
   "entrypoints": [
-    "static/css/main.8319aec0.css",
-    "static/js/main.d939156d.js"
+    "static/css/main.781d79e4.css",
+    "static/js/main.d6e00eba.js"
   ]
 }
